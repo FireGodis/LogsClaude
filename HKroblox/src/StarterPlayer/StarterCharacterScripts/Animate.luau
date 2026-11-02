@@ -1,0 +1,1 @@
+-- Vazio de propósito: o Cavaleiro é animado pelo KnightAnim (StarterPlayerScripts.Client).

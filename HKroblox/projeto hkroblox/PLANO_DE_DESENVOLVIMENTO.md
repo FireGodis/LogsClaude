@@ -1,18 +1,25 @@
 # Plano de desenvolvimento
 
-A sequência mantém a ordem solicitada. Cada item precisa de evidência e registro antes de ser marcado como feito.
+## Feito nesta sessão (em andamento até validação completa)
 
-1. Analisar o place, localizar logs anteriores e preservar alterações pré-existentes.
-2. Manter esta documentação inicial atualizada.
-3. Auditar grafo de plataformas, medidas de salto, colisores, pontos de transição e retorno antes de reposicionar geometria.
-4. Auditar segurança, respawns e pontos de interseção dos seis bancos antes de mudar posição.
-5. Integrar pulo duplo com animação de asas, efeito e som original; limitar uso por ciclo aéreo e habilidade desbloqueada.
-6. Integrar wall jump com raycasts laterais, direção, cooldown/reativação após se afastar e sincronização visual.
-7. Corrigir sistema de diálogo depois de localizar os assets e fluxo de NPC; criar arquitetura expansível.
-8. Tornar bloqueio de controles durante cutscene exclusivo e garantido mesmo diante de chamadas concorrentes; liberar em caminho de erro.
-9. Avançar Fase 5 apenas com habilidades que mudem a navegação e tenham região/portão compatível.
-10. Avançar Fase 6 com NPCs originais, condições de progresso e conteúdo versionável.
-11. Rodar verificações de sintaxe, dependências e playtest disponível.
-12. Atualizar status, log e handoff.
+1. Inspeção estática do lugar e criação da documentação inicial.
+2. Adição de double jump com impulso e janela leve, asas animadas/VFX/SFX existente.
+3. Adição de wall jump lateral, slide e recarga ao encostar em parede oposta/aterrar.
+4. Bloqueio tokenizado para cutscene, com chamada de reativação ignorada enquanto o lock está ativo e liberação idempotente.
+5. Salvamento de checkpoint ao usar banco.
+6. Framework de diálogo e dois NPCs regionais com recompensa de habilidade.
+7. Exportação de todo o código Luau observado para GitHub.
 
-Decisões de movimentação e alcance devem ser confrontadas com `Config.Move`, dimensões do personagem e geometria real. Não reduzir dificuldade por ajustes amplos; corrigir conexões impossíveis ou colisões que retêm o personagem.
+## Continuação na ordem da missão
+
+1. Confirmar save do place no Studio e garantir que o projeto abre com as alterações.
+2. Testar salto normal, Double Jump, limite de um flap por salto e Wall Jump em paredes reais; validar câmera/animação/FX e cooldown no servidor.
+3. Auditar grafo de plataformas com alcance e colisores; reproduzir o local indicado pelo usuário e então fazer a menor correção física justificada.
+4. Revalidar localização, prompt e segurança dos seis bancos, além de respawn/checkpoint/DataStore em ambiente com APIs habilitadas.
+5. Testar controles da cutscene, incluindo ativação concorrente, skip, personagem destruído e saída normal.
+6. Expandir diálogo com condições e variações por progresso, e validar nome/fades em dispositivos.
+7. Associar habilidades a portas/rotas físicas sem bloquear progressão indevidamente.
+8. Completar fases 5 e 6 com áudio autoral, narrativa regional e testes reais.
+9. Revisar as demais fases, monetização, performance e release.
+
+Não mover bancos ou plataformas sem conectar a mudança aos spawns, portas, habilidades e geometria física.

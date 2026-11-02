@@ -1,19 +1,21 @@
 # Bugs e problemas
 
-## Confirmados por inspeção estática
+## Corrigidos nesta sessão (pendente validação ampliada)
 
-1. **Cutscene pode não bloquear todos os controles.** `Movement.start` desativa os controles padrão em uma tarefa assíncrona; o menu/cutscene pode começar antes da desativação terminar. `Cutscene` apenas observa tecla/toque para pular e não adquire um bloqueio exclusivo de controles.
-2. **Habilidades parciais.** O servidor aceita `Flap`/`WallJump` somente se `wings`/`claw` estiverem desbloqueadas e replica timestamps; o movimento local não mostrou execução dessas habilidades. `KnightAnim` prepara tratamento de `flapP`, mas `KnightSpec.Groups` não inclui `wingA`/`wingB` e a lista de peças não contém asas.
-3. **Diálogo ausente.** Não foi localizado sistema de NPC/conversa. Notificações curtas e legendas não suportam diálogo progressivo.
-4. **Mapa físico sem fonte localizada.** `WorldMap` declara layout lógico, mas os scripts ativos listados não incluem o construtor que criou as 204 peças de plataformas e 30 partes de geometria.
+1. **Cutscene reativava controles:** adicionado lock exclusivo e idempotente em Movement; passo de controle trava velocidade durante lock. Teste direto de 0,35 s passou. Jogabilidade completa dentro da cena ainda pendente.
+2. **Asas ausentes no rig:** KnightSpec agora contém duas WedgeParts e grupos de animação. O servidor já aceitava Flap, mas agora o Movement também solicita e aplica impulso. VFX usa partículas procedurais; som reutiliza templates existentes.
+3. **Wall jump sem movimento:** acrescentados raycasts, impulso, slide e limite de reuso no mesmo lado. Não validado em paredes físicas.
+4. **Diálogo ausente:** novo UI e dois NPCs/progressões. Conversa de Lumeira validada em Play; Orvalho e dispositivo móvel pendentes.
+5. **Checkpoint dependia do autosave:** adicionada chamada saveNow no banco. DataStore Studio indisponível, portanto falha live não foi reproduzida.
 
-## Ainda precisam de reprodução
+## Ainda abertos
 
-- Plataformas que prendem o personagem e conexões impossíveis entre trechos.
-- Segurança e alcance de cada banco/checkpoint.
-- Persistência de descanso, salvamento, morte e reaparecimento.
-- Interrupção/erro da cutscene e câmera/pose após a liberação de controles.
+- **Plataformas que prendem/rotas impossíveis:** sem telemetria de ponto exato e sem reprodução confiável do local; não reposicionadas. A geometria é física em Workspace e não tem gerador ativo encontrado.
+- **Distribuição de bancos:** posições não alteradas; auditoria estática manteve os seis bancos por estarem em salas de região e aparentemente seguras. Validar a segurança jogando todas as rotas.
+- **Double Jump e Wall Jump:** código implementado, porém velocidade física e sincronização ainda precisam playtest de usuário/dispositivo confiável.
+- **Save de descanso/respawn:** saveNow codificado, mas APIs do DataStore foram negadas pelo Studio; testar em ambiente com acesso e verificar reaparecimento.
+- **Diálogos por progresso:** atualmente cada NPC tem fala inicial e repetida; não há ainda condições narrativas amplas por eventos de chefe/região.
 
-## Não presumir causa sem reproduzir
+## Risco/limite
 
-A existência de muitos segmentos e oscilação de alturas não prova por si só que um salto é impossível. O alcance depende da gravidade, velocidade, paredes, colisores e habilidade liberada. Verificar a geometria e jogar o trecho antes de alterar posições.
+O assistente só confirma salvamento em GitHub. A janela do Roblox Studio expirou durante captura, então o place pode manter alterações não salvas; abrir o place e salvar antes de publicar ou encerrar o trabalho de edição.

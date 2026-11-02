@@ -1,22 +1,24 @@
 # Projeto HKROBLOX
 
-Esta pasta registra o estado técnico e narrativo do jogo tratado neste ciclo como HKROBLOX. O projeto executado está aberto no Roblox Studio como **Rollow Knife (WIP)**, place ID `114682255992027`. O repositório GitHub fornecido continha apenas `HKroblox/.gitkeep`; por isso, o código observado nesta análise ainda vive no place do Studio e não está espelhado aqui.
+O jogo está aberto no Roblox Studio como **Rollow Knife (WIP)**, place ID `114682255992027`. O usuário confirmou que este é o projeto HKROBLOX. Esta pasta documenta a implementação e o estado real do place.
+
+A pasta [src](../src/README.md) contém um espelho de 33 scripts Luau extraídos do place nesta sessão. É um espelho de código-fonte, não um arquivo de place Roblox; geometria, modelos e configurações do DataModel continuam dentro do place.
 
 ## Documentos
 
-- [Contexto do projeto](CONTEXTO_DO_PROJETO.md)
+- [Contexto](CONTEXTO_DO_PROJETO.md)
 - [Estado das fases](ESTADO_DAS_FASES.md)
 - [Arquitetura e sistemas](ARQUITETURA_E_SISTEMAS.md)
 - [Plano de desenvolvimento](PLANO_DE_DESENVOLVIMENTO.md)
 - [Log de alterações](LOG_DE_ALTERACOES.md)
 - [Bugs e problemas](BUGS_E_PROBLEMAS.md)
 - [Testes e validações](TESTES_E_VALIDACOES.md)
-- [Pendências para próximo agente](PENDENCIAS_PARA_PROXIMO_AGENTE.md)
+- [Pendências para o próximo agente](PENDENCIAS_PARA_PROXIMO_AGENTE.md)
 - [Histórico da Fase 5](historico/log_fase_05.md)
 - [Histórico da Fase 6](historico/log_fase_06.md)
 
-## Estado desta revisão
+## Estado desta sessão
 
-Análise estática inicial concluída. O place já possui movimentação e combate 2.5D, mapa de 14 salas, seis bancos, inimigos, chefe, HUD e cutscene de abertura. A análise não encontrou um sistema de diálogos com NPCs. As habilidades `wings` e `claw` aparecem no esquema de save e em handlers parciais, mas o fluxo completo de desbloqueio, movimento, animação e validação ainda não foi confirmado.
+Foram adicionados movimento de pulo duplo e wall jump condicionados às habilidades, peças originais de asas e VFX, bloqueio por token durante cutscene, salvamento imediato ao descansar, e um sistema de diálogo com dois NPCs originais. Lumeira, na Vila das Lanternas, concede `wings`; Orvalho, na Alameda de Musgo, concede `claw`.
 
-Nenhuma fase é considerada concluída sem validação comportamental no Studio.
+O fluxo de diálogo e a concessão de `wings` foram exercitados no Studio. O movimento efetivo das novas habilidades, wall jump, geometria de plataformas, persistência real e salvamento do place ainda precisam de validação. Nenhuma fase foi marcada como concluída.

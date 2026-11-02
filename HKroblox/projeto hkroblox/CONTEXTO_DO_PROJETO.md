@@ -2,30 +2,27 @@
 
 ## Identificação
 
-- Nome exibido no projeto aberto: **Rollow Knife (WIP)**.
-- Place ID visível na conexão do Roblox Studio: `114682255992027`.
-- Repositório principal fornecido: [FireGodis/LogsClaude](https://github.com/FireGodis/LogsClaude).
-- Diretório de jogo solicitado: `HKroblox/`.
+- Projeto confirmado pelo usuário: place Roblox Studio **Rollow Knife (WIP)**, place ID `114682255992027`.
+- Repositório: [FireGodis/LogsClaude](https://github.com/FireGodis/LogsClaude), diretório `HKroblox/`.
 - Engine e linguagem: Roblox Studio e Luau; scripts usam `--!strict`.
-- Identidade: metroidvania 2.5D com cenário em profundidade fixa, personagem montado por peças e mundo original em português.
+- Gênero/arquitetura: metroidvania 2.5D; personagem articulado por Motor6D; mapa físico em Workspace.
+- As imagens fornecidas servem como referência de atmosfera e legibilidade. Nenhum personagem, texto, mapa ou asset protegido foi copiado.
 
-## Limite entre place e repositório
+## Estado do repositório
 
-Na análise inicial, o repositório tinha somente o arquivo vazio `HKroblox/.gitkeep`. O place aberto contém os scripts e modelos observados abaixo. A documentação é gravada em `HKroblox/projeto hkroblox/`; alterações nos scripts do place precisam ser exportadas para o repositório para manter cópia reproduzível do código.
+O GitHub inicialmente tinha somente `HKroblox/.gitkeep`. Nesta sessão, os 33 scripts encontrados em ReplicatedStorage, ServerScriptService e StarterPlayer foram exportados para `HKroblox/src/`, preservando o caminho do DataModel sob diretórios. Isso permite revisar e continuar o código fora do Studio, mas não reproduz o place físico.
 
-O usuário confirmou que o place **Rollow Knife (WIP)** é o projeto HKROBLOX pretendido. Essa confirmação autoriza tratar esse place como alvo da implementação desta sessão.
+As alterações foram feitas no editor de scripts do Studio. A captura da janela do Studio falhou duas vezes, então não foi possível confirmar o atalho de salvar do place; o espelho GitHub registra as fontes observadas depois das alterações.
 
-## Evidência inicial
+## Evidência de arquitetura
 
-- `ReplicatedStorage.Shared.WorldMap` define 14 salas em seis biomas, 13 aberturas, seis bancos, spawns e itens.
-- `Workspace.Mundo` possui pastas de geometria, plataformas, spawns, bancos, colecionáveis, barreiras, inimigos e cenário.
-- `Workspace.Mundo.Plataformas` contém 204 peças: 102 plataformas sólidas e 102 detalhes de brilho.
-- `StarterPlayer.StarterPlayerScripts.Client.Controllers` contém Input, Movement, KnightAnim, HUD, Menu, Cutscene, Zone, Audio, CameraRig, CombatFx e animação de inimigos.
-- `ServerScriptService.Server.Systems` contém PlayerData, KnightRig, Enemies, WorldSystem, Combat, BossAI e auxiliares de rede.
-- `StarterGui` estava vazio no modo Edit; várias interfaces são criadas por código.
-- A lista de scripts não revelou controlador de diálogos/NPCs. O texto narrativo existente está na cutscene e em notificações.
-- O mapa físico atual existe no Workspace, mas não foi encontrado um construtor ativo de mapa entre os scripts do place.
+- `ReplicatedStorage.Shared.WorldMap`: 14 salas em seis biomas, portas, seis bancos, spawns, itens, barreira e limites.
+- `Workspace.Mundo`: geometria e plataformas materializadas; a tabela WorldMap não é uma fonte comprovada de construção das partes.
+- Cliente: `StarterPlayer.StarterPlayerScripts.Client` e controladores em `Controllers`.
+- Servidor: `ServerScriptService.Server` e módulos em `Systems`.
+- `StarterGui` estava vazio em Edit; Menu, HUD e cenas criam suas próprias interfaces.
+- A busca inicial não encontrou NPCs nem sistema de diálogo. Esta sessão passou a criar NPCs de história pelo WorldSystem em tempo de execução.
 
-## Preservação e estilo
+## Estilo e preservação
 
-Manter os módulos existentes, seus nomes em português e inglês já adotados, a validação de combate no servidor e a animação interpolada em `KnightAnim`. As imagens anexadas orientam clima, silhueta e legibilidade; não são autorização para copiar personagens, textos, mapas ou assets de Hollow Knight/Silksong.
+Preservar o fluxo modular, nomes já usados, a validação do servidor e a animação interpolada. Não reconstruir os segmentos de plataforma por suposição: confirmar alcance, colisão e rota no jogo antes de mover partes.

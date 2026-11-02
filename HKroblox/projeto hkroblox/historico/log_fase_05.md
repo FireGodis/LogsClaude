@@ -1,12 +1,11 @@
-# Histórico — Fase 5: Habilidades por região
+# Histórico — Fase 5: Habilidades à la Silksong
 
-## Linha de base — 2026-11-02
+## 2026-11-02 — avanço inicial
 
-- `Config.DefaultAbilities` inicia com `dash=true`, `pulse=true`.
-- `PlayerData` reconhece habilidades `dash`, `pulse`, `wings`, `claw` e replica atributos para o cliente.
-- `Combat.onAbility` aceita `Flap` com `wings` e `WallJump` com `claw`, escrevendo atributos de animação e FX para outros clientes.
-- `Movement` não mostrou lógica correspondente para enviar essas habilidades ou alterar a velocidade/estado físico.
-- `KnightAnim` consulta `FlapAt`, mas a configuração `KnightSpec` não contém grupos/partes Wing; o efeito não foi confirmado.
-- `WorldMap` define um Jardim e um poço vertical, mas não associa desbloqueios a habilidades. Só há uma barreira definida; o requisito de progressão não foi validado.
-- Testes: leitura estática; sem Playtest.
-- Estado: **Em andamento**. Nenhuma nova habilidade implementada ainda.
+- **Região da Vila das Lanternas — Asa de Bruma (`wings`):** Lumeira concede habilidade ao concluir diálogo. Durante o ar, segundo pressionar do pulo aplica impulso controlado uma vez até aterrissar; peças de asa usam WedgeParts originais com animação oscilante; burst de partículas e cues existentes `flap`/`flap2`. Pode combinar com dash, sujeito a teste de física.
+- **Região Alameda de Musgo — Garra de Raiz (`claw`):** Orvalho concede ao concluir diálogo. Ao detectar parede lateral durante o ar, salto impulsiona para longe, aplica breve controle direcional e wall slide limita queda. A reutilização libera ao pousar ou tocar parede oposta. VFX usa burst procedural e cue existente `wall`.
+- **Progressão:** servidor valida perfil e cooldown e replica os atributos. WorldSystem só concede após diálogo iniciada por ProximityPrompt; habilidade e flag persistem pelo perfil quando DataStore funciona.
+- **Animação/FX/SFX:** animação de asas já tinha lógica inativa; agora há partes/grupos adequados. VFX é código original; som não é inédito.
+- **Aplicação no mapa:** habilidade de garra tem utilidade no Jardim/shafts, mas ainda não foi associada a uma porta física; nenhum portão foi alterado.
+- **Testes:** modules carregaram e wings foi concedida no Play. Impulso, wall jump, segurança de cooldown e save não foram validados em teste físico.
+- **Estado:** **Em andamento**, sem concluir a fase.

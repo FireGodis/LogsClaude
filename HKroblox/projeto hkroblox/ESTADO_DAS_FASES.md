@@ -1,17 +1,17 @@
 # Estado das fases
 
-Estados oficiais usados: **Concluída**, **Em andamento**, **Pendente** e **Bloqueada**. Uma fase só passa a concluída após validação registrada em `TESTES_E_VALIDACOES.md`.
+Estados oficiais: **Concluída**, **Em andamento**, **Pendente** e **Bloqueada**. Nenhuma fase foi concluída nesta sessão; validação incompleta permanece explicitamente anotada.
 
 | Fase | Escopo oficial | Estado | Evidência atual |
 |---|---|---|---|
-| 1 | Reestruturar o código e corrigir o save | Em andamento | Módulos separados e PlayerData com migração v1, sanitização, trava e autosave existem; falta validar DataStore/saída e registrar correções. |
-| 2 | Cavaleiro com animação, corrida, salto, dash, ataques nas quatro direções e dano em máscaras | Em andamento | Corrida, pulo variável, dash, combate para frente/cima/baixo e máscaras existem. Ataque lateral não foi identificado; pulo duplo e wall jump são incompletos. |
-| 3 | Inimigos variados e chefes | Em andamento | Tipos Crawler, Shield e Flier; BossAI e chefe Vigia estão presentes. Falta playtest e validação de reinício/combate. |
-| 4 | Mapa conectado, biomas, bancos e portões por habilidade | Em andamento | WorldMap define 14 salas e biomas, bancos, portas e uma barreira; fluxo físico e compatibilidade de saltos ainda não foram comprovados. |
-| 5 | Habilidades ligadas às regiões | Em andamento | `dash` e `pulse` são padrão. `wings` e `claw` aparecem no save e no handler de Ability, mas não há movimento correspondente completo confirmado. |
-| 6 | História, NPCs e diálogos | Pendente | Há narração curta na cutscene e avisos do mundo; NPCs, conversas progressivas e interface de diálogo não foram encontrados. |
-| 7 | Menu, HUD, mapa e inventário | Em andamento | Menu e HUD gerados por código estão presentes. Mapa e inventário funcionais não foram encontrados na análise inicial. |
-| 8 | Áudio e dublagem | Em andamento | Sound objects e chamadas de Audio existem; dublagem não foi identificada e reprodução não foi testada. |
-| 9 | Monetização, testes e revisão final | Pendente | Nenhuma implementação ou validação de monetização/revisão final observada. |
+| 1 | Reestruturar o código e corrigir o save | Em andamento | PlayerData ganhou API de salvamento imediato e o banco a chama. Persistência real não pôde ser testada porque APIs de DataStore estão desabilitadas em Studio. |
+| 2 | Cavaleiro com animação, corrida, salto, dash, ataques nas quatro direções e dano em máscaras | Em andamento | Movimento agora contém caminhos de double jump/wall jump e o rig ganha asas; o teclado automatizado não produziu uma validação confiável do impulso. Ataques existentes permanecem frente/cima/baixo. |
+| 3 | Inimigos variados e chefes | Em andamento | Inimigos e chefe existentes não foram revalidados nesta sessão. |
+| 4 | Mapa conectado, biomas, bancos e portões travados por habilidades | Em andamento | Auditoria estática dos seis bancos; nenhum reposicionamento das plataformas ou bancos sem reprodução confiável. Compatibilidade do mapa continua pendente. |
+| 5 | Habilidades ligadas às regiões | Em andamento | Lumeira concede `wings` e Orvalho concede `claw`; mecânicas, efeitos e movimento foram implementados, mas o comportamento físico em Play não foi validado ponta a ponta. |
+| 6 | História, NPCs e diálogos | Em andamento | Dois NPCs autorais, falas próprias e caixa de diálogo com nome/fade/typewriter foram exercitados; ramificação avançada e conteúdo por progressão ainda podem crescer. |
+| 7 | Menu, HUD, mapa e inventário | Em andamento | Menu/HUD pré-existentes; diálogo runtime foi acrescentado. Mapa e inventário completos não foram encontrados. |
+| 8 | Áudio e dublagem | Em andamento | Cues existentes foram reaproveitados para asas, parede e blips. Som único de habilidade e dublagem não foram produzidos. |
+| 9 | Monetização, testes e revisão final | Pendente | Monetização e revisão final não implementadas. |
 
-Não alterar os estados sem registrar evidência nova. Status é do place observado, não do espelho GitHub.
+Atualize estados somente junto com evidência no arquivo de validação.

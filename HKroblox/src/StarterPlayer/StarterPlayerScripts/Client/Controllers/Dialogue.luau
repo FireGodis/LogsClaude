@@ -194,7 +194,7 @@ local function openDialogue(npcId: string, speaker: string, rawLines: any)
 			return
 		end
 		local key = input.KeyCode
-		if key ~= Enum.KeyCode.Space and key ~= Enum.KeyCode.Return and key ~= Enum.KeyCode.E and key ~= Enum.KeyCode.ButtonA then
+		if key ~= Enum.KeyCode.Space and key ~= Enum.KeyCode.Return and key ~= Enum.KeyCode.E and key ~= Enum.KeyCode.ButtonA and input.UserInputType ~= Enum.UserInputType.Touch then
 			return
 		end
 		if typing then

@@ -56,3 +56,19 @@
 - Todos os documentos e histórico foram atualizados com estado e limites.
 - Play no Studio iniciou scripts e exigiu os novos módulos no cliente; console não indicou erro dos módulos alterados. DataStore recusou API em Studio; avisos CorePackages e uma chamada de QA inválida não representam erro do jogo.
 - **Place:** alterações editoriais estavam presentes antes de exportar. Não foi possível confirmar salvamento do place pela UI porque captura/recuperação da janela do Studio expirou; verificar/Salvar no Studio antes de publicar.
+
+## Arquivos alterados no DataModel do Studio
+
+- `ReplicatedStorage.Shared.Config`
+- `ReplicatedStorage.Shared.KnightSpec`
+- `ReplicatedStorage.Shared.Remotes`
+- `StarterPlayer.StarterPlayerScripts.Client`
+- `StarterPlayer.StarterPlayerScripts.Client.Controllers.Movement`
+- `StarterPlayer.StarterPlayerScripts.Client.Controllers.Cutscene`
+- `StarterPlayer.StarterPlayerScripts.Client.Controllers.CombatFx`
+- `StarterPlayer.StarterPlayerScripts.Client.Controllers.Dialogue` (novo ModuleScript)
+- `ServerScriptService.Server.Systems.Combat`
+- `ServerScriptService.Server.Systems.PlayerData`
+- `ServerScriptService.Server.Systems.WorldSystem`
+
+O espelho versionado inclui os 33 LuaSourceContainers do place, não apenas os 11 scripts acima; consulte `HKroblox/src/README.md` e os caminhos sob `HKroblox/src/`. NPCs são criados em execução pela função de inicialização de WorldSystem, portanto não representam modelos salvos no DataModel de edição.

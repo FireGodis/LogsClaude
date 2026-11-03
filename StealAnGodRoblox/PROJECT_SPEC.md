@@ -4,7 +4,7 @@
 
 STEAL A GOD é um simulador multiplayer Roblox de coleção, progressão, bases e incursões. Jogadores compram e chocam ovos divinos, coletam deuses mitológicos, posicionam-nos em bases para gerar recursos, evoluem sua coleção e podem invadir bases rivais para roubar itens elegíveis. Rivais NPC transparentemente identificados como IA mantêm o mundo ativo em servidores com poucos jogadores humanos.
 
-A especificação completa fornecida pelo usuário está em [MASTER_GAME_DESIGN.md](MASTER_GAME_DESIGN.md). Este documento organiza os requisitos para planejamento; ele não confirma que o projeto de jogo já exista ou que qualquer requisito esteja implementado.
+A especificação completa fornecida pelo usuário está em [MASTER_GAME_DESIGN.md](MASTER_GAME_DESIGN.md). Este documento organiza os requisitos e o estado observado no Studio; a implementação atual cobre somente a fatia descrita ao final, não todos os sistemas do GDD.
 
 ## Plataforma e direção
 
@@ -79,7 +79,7 @@ A primeira versão jogável deve permitir entrar, receber base, ganhar moedas, c
 
 ## Estado atual no Studio — 2026-11-03
 
-Place: [☀️UPD] Steal An God, ID 129275930788382. O place inicial continha Baseplate e SpawnLocation; ambos foram preservados. O projeto é editado no Studio conectado, sem Rojo configurado neste slice.
+Place: [☀️UPD] Steal An God, ID 129275930788382. O place inicial continha Baseplate e SpawnLocation; ambos foram preservados. O workspace local não continha arquivos .lua/.luau/.rbxl/.rbxlx/default.project.json/rojo.json detectáveis; o comando rojo também não foi encontrado no PATH. As alterações foram feitas diretamente no Studio pelo MCP.
 
 ### Implementado e testado
 

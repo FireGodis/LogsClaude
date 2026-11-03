@@ -28,3 +28,10 @@ O assistente só confirma salvamento em GitHub. A janela do Roblox Studio expiro
 - **Wall Jump:** antiga trava por lado removida; novo cooldown de 0,22 s permite nova ação depois de recontato. Sequência de escalada em parede física pendente.
 - **Banco j2 inseguro e Orvalho adjacente:** área segura no servidor (raio 15, tolerância vertical 8), teste de dano não reduziu máscaras; Orvalho deslocado 46 studs. Validar outras fontes de dano e os outros bancos.
 - **Visual ForgeGUI:** modelo 3D foi solicitado, mas o ForgeGUI respondeu que geração exige upgrade; modelos procedurais originais substituem provisoriamente os blocos simples.
+
+## Revisão — 2026-11-02
+
+- **Asas pouco visíveis e impulso fraco:** impulso para 68 (configurado previamente); esta revisão ampliou a pose para seis partes em leque, aumentou elevação do corpo, adicionou halo e luz ciano. Aparência foi conferida por criação das instâncias, mas não por inspeção visual final em tela.
+- **Wall jump rígido/baixo:** lock de direção reduzido para 0,08 s; força vertical 78 e horizontal 32; dash e flap voltam a ficar disponíveis no wall hop; cooldown de recontato 0,16 s. Sequência contínua ainda precisa de controle manual no jogo.
+- **Sem habilidade `claw`:** contato de parede não ativa estado de cling/slide; queda é limitada a velocidade de -18 para evitar aderência lenta. Cenário ainda requer playtest físico.
+- Place no Roblox Studio continua sem confirmação de salvamento.

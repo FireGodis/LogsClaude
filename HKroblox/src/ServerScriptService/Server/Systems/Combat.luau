@@ -179,7 +179,7 @@ local function onAbility(player: Player, kind: unknown, facingArg: unknown)
 		character:SetAttribute("FlapAt", Workspace:GetServerTimeNow())
 		character:SetAttribute("Facing", facing)
 		Net.fireOthers("Fx", player, "Flap", root.Position)
-	elseif kind == "WallJump" and profile.abilities.claw and ready(state, "WallJump", 0.18) then
+	elseif kind == "WallJump" and profile.abilities.claw and ready(state, "WallJump", 0.12) then
 		local params = RaycastParams.new()
 		params.FilterType = Enum.RaycastFilterType.Exclude
 		params.FilterDescendantsInstances = { character }

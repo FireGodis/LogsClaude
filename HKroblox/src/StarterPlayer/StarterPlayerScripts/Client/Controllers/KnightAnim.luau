@@ -153,10 +153,10 @@ local function computeTargets(info: Types.AnimInfo, t: number, out: { [string]: 
 		-- bater de asas: duas batidas largas, corpo se encolhe e braços sobem
 		local p = info.flapP
 		local beat = math.sin(p * math.pi * 4 - math.pi / 2)
-		wingA.r = 0.3 + beat * 1.15
-		wingB.r = 0.15 + beat * 1.15
-		body.y += 0.25 * (1 - p)
-		head.y += 0.2
+		wingA.r = 0.12 + beat * 1.52
+		wingB.r = -0.12 + beat * 1.52
+		body.y += 0.38 * (1 - p)
+		head.y += 0.24
 		legF.r, legB.r = 0.6, -0.2
 		armF.r, armB.r = 2.2, 2.0
 		cloak.r = 0.9
@@ -215,7 +215,7 @@ local function deriveRemote(rig: Rig, serverNow: number)
 	info.dashing = typeof(dashAt) == "number" and serverNow - dashAt >= 0 and serverNow - dashAt < Config.Move.DashTime
 	info.focusing = character:GetAttribute("Focusing") == true
 	local flapAt = character:GetAttribute("FlapAt")
-	info.flapP = if typeof(flapAt) == "number" and serverNow - flapAt >= 0 and serverNow - flapAt < 0.42 then (serverNow - flapAt) / 0.42 else -1
+	info.flapP = if typeof(flapAt) == "number" and serverNow - flapAt >= 0 and serverNow - flapAt < Config.Move.FlapDuration then (serverNow - flapAt) / Config.Move.FlapDuration else -1
 	info.wallSide = 0
 	info.dead = rig.humanoid.Health <= 0
 	info.hurt = false
@@ -291,7 +291,10 @@ local function updateRig(rig: Rig, dt: number, now: number, serverNow: number)
 		end
 	end
 	if rig.glow then
-		rig.glow.Enabled = info.focusing or (scene ~= nil and rig.isLocal and scene.glow)
+		rig.glow.Enabled = info.focusing or (scene ~= nil and rig.isLocal and scene.glow) or flapping
+		rig.glow.Color = if flapping then Color3.fromRGB(190, 255, 255) else Color3.fromRGB(190, 220, 255)
+		rig.glow.Brightness = if flapping then 3.8 else 2.2
+		rig.glow.Range = if flapping then 22 else 14
 	end
 
 	-- Piscar durante os quadros de invulnerabilidade.

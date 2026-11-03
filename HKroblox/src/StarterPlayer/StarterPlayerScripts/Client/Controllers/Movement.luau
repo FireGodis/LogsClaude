@@ -266,8 +266,8 @@ local function step(dt: number)
 	wallJumpCooldown = math.max(0, wallJumpCooldown - dt)
 	wallJumpLock = math.max(0, wallJumpLock - dt)
 	flapT = if flapT > 0 then math.max(-1, flapT - dt) else -1
-	info.flapP = if flapT > 0 then 1 - flapT / 0.42 else -1
-	local wallSide = 0
+	info.flapP = if flapT > 0 then 1 - flapT / M.FlapDuration else -1
+	local wallContactSide = 0
 	if not grounded and dashT <= 0 then
 		local castParams = RaycastParams.new()
 		castParams.FilterType = Enum.RaycastFilterType.Exclude
@@ -275,11 +275,13 @@ local function step(dt: number)
 		local rightHit = Workspace:Raycast(pos, Vector3.new(M.WallProbeDistance, 0, 0), castParams)
 		local leftHit = Workspace:Raycast(pos, Vector3.new(-M.WallProbeDistance, 0, 0), castParams)
 		if rightHit and math.abs(rightHit.Normal.Y) < 0.35 then
-			wallSide = 1
+			wallContactSide = 1
 		elseif leftHit and math.abs(leftHit.Normal.Y) < 0.35 then
-			wallSide = -1
+			wallContactSide = -1
 		end
 	end
+	local hasClaw = player:GetAttribute("Ability_claw") == true
+	local wallSide = if hasClaw then wallContactSide else 0
 	info.wallSide = wallSide
 	if grounded and jumpLock <= 0 then
 		coyote = M.CoyoteTime
@@ -370,9 +372,12 @@ local function step(dt: number)
 			Audio.play("jump")
 		elseif wallSide ~= 0 and wallJumpCooldown <= 0 and player:GetAttribute("Ability_claw") == true then
 			jumpBuffer = 0
-			wallJumpCooldown = 0.22
+			wallJumpCooldown = M.WallJumpRegrabCooldown
 			wallJumpDir = -wallSide
 			wallJumpLock = M.WallJumpLock
+			doubleJumpUsed = false
+			airDashUsed = false
+			dashCd = 0
 			info.facing = wallJumpDir
 			info.wallSide = 0
 			vy = M.WallJumpVelocityY
@@ -392,7 +397,7 @@ local function step(dt: number)
 			Audio.play("flap")
 			Audio.play("flap2")
 			CombatFx.flap(pos)
-			flapT = 0.42
+			flapT = M.FlapDuration
 		end
 	end
 
@@ -411,9 +416,17 @@ local function step(dt: number)
 		vx = 0
 		hum:Move(Vector3.zero, false)
 	elseif wallJumpLock > 0 then
-		local lockAxis = if wallJumpDir ~= 0 then wallJumpDir else axis
-		vx = if wallJumpDir ~= 0 then wallJumpDir * M.WallJumpVelocityX else lockAxis * M.DoubleJumpDrift
-		hum:Move(Vector3.new(lockAxis, 0, 0), false)
+		if wallJumpDir ~= 0 then
+			-- Mantém o impulso de saída quando o jogador não direciona; entrada lateral
+			-- continua responsiva para poder voltar à parede ou iniciar um dash.
+			vx = if axis ~= 0 then axis * M.RunSpeed else wallJumpDir * M.WallJumpVelocityX
+		else
+			vx = if axis ~= 0 then axis * M.RunSpeed else info.facing * M.DoubleJumpDrift
+		end
+		hum:Move(Vector3.new(axis, 0, 0), false)
+		if axis ~= 0 then
+			info.facing = axis
+		end
 	else
 		vx = axis * M.RunSpeed
 		hum:Move(Vector3.new(axis, 0, 0), false)
@@ -431,10 +444,15 @@ local function step(dt: number)
 			jumping = false
 		end
 	end
-	if not grounded and vy < 0 and not dashing then
-		vy = math.max(vy - Workspace.Gravity * (M.FallGravityMult - 1) * dt, -M.MaxFallSpeed)
-		if wallSide ~= 0 and player:GetAttribute("Ability_claw") == true then
+	if not grounded and not dashing then
+		if vy < 0 then
+			vy = math.max(vy - Workspace.Gravity * (M.FallGravityMult - 1) * dt, -M.MaxFallSpeed)
+		end
+		if wallSide ~= 0 and hasClaw then
 			vy = math.max(vy, -M.WallSlideSpeed)
+		elseif wallContactSide ~= 0 and not hasClaw and vy <= 0 then
+			-- Sem a habilidade, o contato não concede agarrão nem desacelera a queda.
+			vy = math.min(vy, -M.UnskilledWallFallSpeed)
 		end
 	end
 

@@ -32,3 +32,7 @@ Preservar o fluxo modular, nomes já usados, a validação do servidor e a anima
 - Nesta sessão foram ajustados bloqueio rígido em diálogos/cutscene, layout de diálogo, Double Jump/Wall Jump, proteção de bancos e aparência procedural dos NPCs. Veja o novo registro em `historico/log_correcao_movimento_dialogo_npc_2026-11-02.md`.
 - O teste do lock e o dano no banco j2 passaram isoladamente. Wall/Double Jump e UI final precisam de validação manual em Play.
 - Geração 3D do ForgeGUI foi bloqueada pelo plano da conta. Place não pôde ser salvo nesta sessão; o espelho Luau e documentos foram atualizados no GitHub.
+
+## Continuidade de movimento — 2026-11-02
+
+A referência visual recebida orienta asas luminosas em leque, feitas com geometria original do rig. Wall jump agora deve ser encadeável com dash e flap; a implementação renova ambos ao saltar da parede, aumenta o impulso vertical e solta o personagem sem habilidade `claw`. Alterações e testes detalhados: `historico/log_salto_alado_walljump_fluido_2026-11-02.md`.

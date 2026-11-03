@@ -76,3 +76,7 @@ O espelho versionado inclui os 33 LuaSourceContainers do place, não apenas os 1
 ## 2026-11-02 — lock, diálogo, salto, banco e NPCs
 
 O registro completo, com causa, comportamento anterior/esperado/atual, arquivos, testes, limites e sequência para o próximo agente está em [historico/log_correcao_movimento_dialogo_npc_2026-11-02.md](historico/log_correcao_movimento_dialogo_npc_2026-11-02.md). Foram alterados Config, KnightSpec, Movement, Dialogue, Cutscene, Combat e WorldSystem. O lock API e a proteção de dano no assento j2 passaram; não se validou física real do salto nem UI final. ForgeGUI recusou geração 3D por exigir upgrade de plano. Salvamento do place não confirmado.
+
+## 2026-11-02 — visual do flap e fluidez do Wall Jump
+
+Detalhes de causa, mudanças por arquivo, comportamento antes/depois, validação, limites e tarefas restantes em `historico/log_salto_alado_walljump_fluido_2026-11-02.md`. Foi validado carregamento em Play, rig com 18 peças e criação de halo/luz. A sequência física em parede real continua pendente; o place não foi salvo/confirmado.

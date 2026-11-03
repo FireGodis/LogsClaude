@@ -33,3 +33,7 @@ Não mover bancos ou plataformas sem conectar a mudança aos spawns, portas, hab
 5. Criar visuais originais procedurais; solicitar modelo 3D ForgeGUI quando recurso estiver liberado.
 
 Priorizar validação manual e persistência do place antes de avançar conteúdo adicional.
+
+## Ajuste de prioridade — 2026-11-02
+
+Continuar a Fase 2/5 com teste de movimento em parede real antes de adicionar novas habilidades regionais. Validar a cadeia wall jump → dash → flap → retorno à parede, a queda sem `claw` e o contraste do VFX em fundo escuro. A geometria, o banco e a UI exigem inspeção in-game, e o place ainda precisa ser salvo.

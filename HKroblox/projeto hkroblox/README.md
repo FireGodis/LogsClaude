@@ -26,3 +26,7 @@ O fluxo de diálogo e a concessão de `wings` foram exercitados no Studio. O mov
 ## Última sessão (2026-11-02)
 
 Foram corrigidos os estados de lock de controles, diálogo, flap, wall jump, proteção do banco j2 e visuais procedurais dos dois NPCs. A geração paga do ForgeGUI está bloqueada no plano atual e o place ainda precisa ser salvo manualmente no Studio. Consulte o [registro detalhado](historico/log_correcao_movimento_dialogo_npc_2026-11-02.md) e a [validação](TESTES_E_VALIDACOES.md).
+
+## Revisão de movimento — 2026-11-02
+
+A iteração mais recente amplia o flap do Double Jump com seis segmentos de asa e halo ciano, e torna o Wall Jump mais alto e encadeável com dash e flap. Consulte `historico/log_salto_alado_walljump_fluido_2026-11-02.md` para evidência e limitações. O código espelhado está em `../src/`; o place no Studio ainda não foi confirmado como salvo.

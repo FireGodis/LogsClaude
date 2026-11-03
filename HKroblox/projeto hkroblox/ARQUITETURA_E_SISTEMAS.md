@@ -39,3 +39,10 @@
 - Wall Jump detecta parede via raycast e usa cooldown local curto para permitir saltos sucessivos no mesmo plano após recontato. O cooldown do evento visual é limitado no servidor.
 - `Combat.damagePlayer` consulta tags `Bench` e aplica o raio/tolerância de altura de `Config.World`; `WorldSystem` continua dono dos bancos, NPCs e progressão.
 - Os NPCs agora são modelos procedurais compostos de BaseParts para manter o runtime independente de asset externo. Não são rigs animados nem o modelo 3D do ForgeGUI; cada revisão visual substitui a instância antiga.
+
+## Movimento aéreo — revisão 2026-11-02
+
+- `Config.Move` concentra `FlapDuration`, impulso, força de wall jump, slide e cooldown de recontato.
+- `Movement` determina contato físico por raycast, mas só publica estado de escalada quando `Ability_claw` está ativa. Wall hop restaura dash e flap e usa direção controlável.
+- `KnightSpec` define duas asas principais e quatro penas WedgePart; `KnightAnim` articula as seis partes no flap.
+- `CombatFx.flap` cria partículas, halo de expansão e luz. Isso é VFX procedural; não depende de assets de terceiros.

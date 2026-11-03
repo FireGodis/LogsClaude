@@ -36,3 +36,11 @@
 - **Bancos:** revisar todos os tags Bench, aplicar dano fora/dentro da área, testar ataques de chefe/hazards e tolerância vertical.
 - **NPC:** inspecionar composição procedural em viewport. O pedido ForgeGUI foi bloqueado pelo plano; geração/publicação de modelo 3D segue pendente.
 - **Dados:** em ambiente autorizado para DataStore, validar save, reload e respawn. Nenhuma fase deve ser marcada como concluída ainda.
+
+## Próxima sessão — revisão de movimento 2026-11-02
+
+1. Salvar o place aberto “Rollow Knife (WIP)” (114682255992027) no Roblox Studio e conferir persistência no reopen. O código GitHub é espelho dos scripts, não salva o place.
+2. Em Play, testar numa parede vertical: três ou mais wall jumps recontatando a mesma parede; encadear dash, mudar direção e usar flap; comprovar altura suficiente e controle durante o voo.
+3. Sem `Ability_claw`, encostar e pressionar A/D; personagem deve cair sem pose/slide de agarrar.
+4. Conferir visual em tela: leque largo branco/ciano, halo sem ofuscar gameplay, animação sincronizada e som.
+5. Se a escalada ficar excessiva, ajustar apenas `Config.Move` (`WallJumpVelocityY=78`, `WallJumpVelocityX=32`, `WallJumpRegrabCooldown=0.16`, `WallSlideSpeed=15`, `UnskilledWallFallSpeed=18`) após teste comparativo.

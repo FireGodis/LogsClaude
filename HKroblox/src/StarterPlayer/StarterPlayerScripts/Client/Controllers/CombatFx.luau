@@ -164,7 +164,32 @@ function CombatFx.dust(position: Vector3, strength: number)
 end
 
 function CombatFx.flap(position: Vector3)
-	burst(position + Vector3.new(0, 1.1, 0), Color3.fromRGB(196, 235, 255), 16, 15, 0.42, 4)
+	burst(position + Vector3.new(-0.8, 0.65, 0), Color3.fromRGB(238, 255, 255), 24, 20, 0.55, 2)
+	burst(position + Vector3.new(0.8, 0.65, 0), Color3.fromRGB(132, 238, 255), 22, 18, 0.55, 2)
+	local halo = Instance.new("Part")
+	halo.Name = "FlapHalo"
+	halo.Shape = Enum.PartType.Cylinder
+	halo.Anchored = true
+	halo.CanCollide = false
+	halo.CanTouch = false
+	halo.CanQuery = false
+	halo.Material = Enum.Material.Neon
+	halo.Color = Color3.fromRGB(186, 250, 255)
+	halo.Transparency = 0.32
+	halo.Size = Vector3.new(0.14, 1.8, 1.8)
+	halo.CFrame = CFrame.new(position + Vector3.new(0, 0.7, 0)) * CFrame.Angles(0, math.pi / 2, 0)
+	halo.Parent = Workspace
+	local light = Instance.new("PointLight")
+	light.Color = Color3.fromRGB(188, 250, 255)
+	light.Brightness = 3.5
+	light.Range = 18
+	light.Parent = halo
+	TweenService:Create(halo, TweenInfo.new(0.42, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+		Size = Vector3.new(0.14, 7.5, 5.6),
+		Transparency = 1,
+	}):Play()
+	TweenService:Create(light, TweenInfo.new(0.42), { Brightness = 0 }):Play()
+	Debris:AddItem(halo, 0.48)
 end
 
 function CombatFx.wallJump(position: Vector3, wallSide: number)

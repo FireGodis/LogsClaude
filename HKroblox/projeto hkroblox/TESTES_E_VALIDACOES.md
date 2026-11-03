@@ -33,3 +33,12 @@ Módulos carregam e o diálogo/recompensa do NPC inicial foi exercitado. O lock 
 - Teste de evento de conversa não abriu `RK_Dialogue` enquanto o painel de Controles do menu permaneceu ativo; **inconclusivo**, não declarar UI ou lock conversacional como E2E validado.
 - Double Jump, asas animadas, Wall Jump repetido, camera cutscene sob input e save/reload do DataStore **não testados ponta a ponta**.
 - O salvamento do place não foi confirmado: chamadas de captura da janela nativa expiraram duas vezes e `SavePlaceAsync` não existe no DataModel fornecido ao executor. Código/documentação em GitHub é cópia de recuperação, não substitui salvar o place no Studio.
+
+## Execução — 2026-11-02 (revisão do salto)
+
+- Inicialização Play: scripts carregaram sem erro Luau observado.
+- Rig do personagem: 18 filhos, incluindo quatro novas penas; carregamento confirmado no servidor.
+- Chamada de `CombatFx.flap`: halo e PointLight criados; `FlapDuration=0.52` e `WallJumpVelocityY=78` lidos.
+- Console: avisos de acesso a DataStore desabilitado no Studio (`StudioAccessToApisNotAllowed`, stores `MareProgress_v1` e `RollowKnifeProfiles_v1`).
+- **Não executado:** teste físico reproduzível de wall hop repetido, dash e double jump em sequência; queda sem habilidade junto a parede; inspeção manual final da silhueta do flap.
+- Resultado: validação estrutural e de construção dos VFX aprovada; validação de gameplay parcial. Nenhuma fase marcada concluída.

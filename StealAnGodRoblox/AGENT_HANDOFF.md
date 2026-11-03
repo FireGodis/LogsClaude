@@ -4,8 +4,8 @@
 
 - Projeto: STEAL A GOD para Roblox.
 - Pasta de documentação: StealAnGodRoblox no repositório FireGodis/LogsClaude.
-- Estado: documentação inicial publicada; projeto Roblox ainda não inspecionado.
-- Próxima tarefa: completar Fase 0 de PROJECT_SPEC.md antes de alterar código, place ou assets.
+- Estado: vertical slice no Studio documentado abaixo; ver atualização de 2026-11-03.
+- Próxima tarefa: continuar os testes pendentes descritos em TEST_PLAN.md, sem expandir a população antes de validar multiplayer e persistência.
 - Fonte integral do pedido de produto: MASTER_GAME_DESIGN.md.
 
 ## Protocolo
@@ -45,3 +45,12 @@ O Git fornece o histórico versionado dos documentos desta pasta. Use BACKUP_IND
 - Limitações: o place, scripts e assets reais não foram inspecionados nem copiados.
 - Próximo passo: Fase 0 de inspeção no ambiente de Roblox.
 - Commit: preenchido após publicação no repositório.
+
+## Atualização de estado — 2026-11-03
+
+- Place inspecionado e atualizado: [☀️UPD] Steal An God, ID 129275930788382.
+- Estado atual: vertical slice de jogador + um rival IA funcional e testado em Studio; não é a experiência completa do GDD.
+- Snapshot dos scripts: source_snapshot/2026-11-03/README.md. O snapshot contém código Luau, mas não um arquivo .rbxlx nem assets binários.
+- Testes concluídos: compra/hatch/produção/coleta/upgrade humano e Ares até nível 2. DataStore online, multiplayer, roubo/defesa, população dinâmica, mobile e monetização seguem pendentes.
+- Próximo agente: leia o snapshot, teste a persistência fora do modo memória com uma cópia de teste autorizada, valide multiplayer/pathfinding em falha e só então expanda população ou roubo.
+- Não publicar a experiência sem autorização explícita.

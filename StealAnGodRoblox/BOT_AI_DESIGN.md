@@ -66,3 +66,18 @@ Ao reduzir a população, interromper novos objetivos dos bots excedentes, concl
 ## Pendências
 
 Validar a primeira política de utilidade, os limites de frequência e o custo de navegação no projeto real. Balanceamento de dificuldade só deve acompanhar a progressão de forma compreensível; não deve manipular resultados para forçar compras.
+
+## Primeiro rival implementado — Ares (2026-11-03)
+
+A implementação atual está em BotAIService no snapshot de código. O servidor reserva a base 7, cria um NPC R15 próprio, identifica-o como ARES • IA e mantém estado econômico independente de Players e DataStore.
+
+- Personalidade configurada: Aggressive; pesos utilitários pontuam compra, hatch, coleta e upgrade.
+- Estados observáveis: Purchasing, Hatching, Collecting, Upgrading, SavingCoins/Defending e Recovering.
+- Usa 150 Coins iniciais, paga 100 por ovo, gera renda de Zeus em saldo pendente e coleta para o saldo do bot. Compra, hatch, coleta e upgrade checam inventário e moedas no servidor.
+- Para deslocamento, calcula rotas com PathfindingService e move o Humanoid por waypoints. Caminhos bloqueados ou sem sucesso são tentados novamente até o limite configurado.
+- Upgrade nível 2 usa o mesmo custo e multiplicador configurados para jogadores; o estado do bot existe apenas no ciclo do servidor.
+- No playtest, Ares chegou ao hub, comprou o ovo, voltou à base, chocou Zeus, coletou e alcançou nível 2. Não houve teleporte de progresso.
+
+### Escopo ainda pendente
+
+A implementação valida um rival, não a população de seis. Ares ainda não rouba, invade, defende contra invasões, participa de eventos ou usa feed. Apenas uma personalidade e o nível 2 foram exercitados; caminho inalcançável, múltiplos jogadores, aposentadoria e fairness ainda exigem testes.

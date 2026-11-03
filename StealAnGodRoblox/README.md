@@ -23,7 +23,11 @@ O place aberto no Studio foi inspecionado e recebeu uma primeira versão jogáve
 | [AGENT_HANDOFF.md](AGENT_HANDOFF.md) | Protocolo para registrar progresso, evidências, pendências e passagem entre agentes |
 | [BACKUP_INDEX.md](BACKUP_INDEX.md) | Índice do GDD e do snapshot dos scripts extraídos do Studio |
 
-## Snapshot de código\n\nOs scripts atuais estão em [source_snapshot/2026-11-03/README.md](source_snapshot/2026-11-03/README.md), com os caminhos equivalentes no DataModel. O snapshot cobre os fontes e a geração procedural do mapa; ainda não há uma cópia .rbxlx do place.\n\n## Referências de desenvolvimento
+## Snapshot de código
+
+Os scripts atuais estão em [source_snapshot/2026-11-03/README.md](source_snapshot/2026-11-03/README.md), com os caminhos equivalentes no DataModel. O snapshot cobre os fontes e a geração procedural do mapa; ainda não há uma cópia .rbxlx do place.
+
+## Referências de desenvolvimento
 
 - [Roblox Game Skill](https://github.com/brockmartin/roblox-game-skill/tree/main) — referência para trabalho em Luau, Roblox Studio, arquitetura, segurança, desempenho e fluxos de desenvolvimento.
 - [Blender SuperSkill](https://github.com/powerhouse90/Blender-Superskill) — referência para criação, inspeção e validação iterativa de assets no Blender.

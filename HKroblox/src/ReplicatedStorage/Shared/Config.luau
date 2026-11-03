@@ -12,14 +12,14 @@ local Config = {
 	Move = {
 		RunSpeed = 21,
 		JumpVelocity = 60,
-		DoubleJumpVelocity = 44,
+		DoubleJumpVelocity = 68,
 		DoubleJumpDrift = 8,
 		DoubleJumpFloatTime = 0.22,
 		WallProbeDistance = 1.35,
 		WallJumpVelocityX = 34,
 		WallJumpVelocityY = 58,
 		WallSlideSpeed = 22,
-		WallJumpLock = 0.15,
+		WallJumpLock = 0.18,
 		JumpCut = 0.42,
 		CoyoteTime = 0.09,
 		JumpBuffer = 0.12,
@@ -47,6 +47,8 @@ local Config = {
 		EchoDuration = 5,
 		StunDuration = 1.5,
 	},
+
+	World = { BenchSafeRadius = 15, BenchSafeHeight = 8 },
 
 	Enemy = {
 		SentinelSpeed = 3.5,

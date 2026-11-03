@@ -196,6 +196,8 @@ function Cutscene.play(done: () -> ())
 	end
 
 	destroyConnection = character.Destroying:Connect(finish)
+	-- Failsafe: sempre libera trava e câmera caso o controlador de cena seja interrompido.
+	task.delay(12, finish)
 	inputConnection = UserInputService.InputBegan:Connect(function(input: InputObject)
 		if elapsed < 1.5 or elapsed > 8.2 then
 			return

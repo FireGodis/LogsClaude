@@ -3,6 +3,7 @@
 -- O cliente PEDE; o servidor valida taxa, tipo, faixa e plausibilidade, e decide.
 
 local Players = game:GetService("Players")
+local CollectionService = game:GetService("CollectionService")
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
@@ -72,9 +73,28 @@ function Combat.restore(player: Player)
 	player:SetAttribute("Soul", Config.Soul.Max)
 end
 
+local function insideBenchSanctuary(root: BasePart): boolean
+	for _, bench in CollectionService:GetTagged("Bench") do
+		local position: Vector3?
+		if bench:IsA("BasePart") then
+			position = bench.Position
+		elseif bench:IsA("Model") then
+			position = bench:GetPivot().Position
+		end
+		if position then
+			local offset = root.Position - position
+			if math.abs(offset.Y) <= Config.World.BenchSafeHeight
+				and Vector2.new(offset.X, offset.Z).Magnitude <= Config.World.BenchSafeRadius then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 function Combat.damagePlayer(player: Player, amount: number, sourceX: number)
 	local character, humanoid, root = alive(player)
-	if not character or not humanoid or not root then
+	if not character or not humanoid or not root or insideBenchSanctuary(root) then
 		return
 	end
 	local serverNow = Workspace:GetServerTimeNow()
@@ -159,7 +179,7 @@ local function onAbility(player: Player, kind: unknown, facingArg: unknown)
 		character:SetAttribute("FlapAt", Workspace:GetServerTimeNow())
 		character:SetAttribute("Facing", facing)
 		Net.fireOthers("Fx", player, "Flap", root.Position)
-	elseif kind == "WallJump" and profile.abilities.claw and ready(state, "WallJump", 0.28) then
+	elseif kind == "WallJump" and profile.abilities.claw and ready(state, "WallJump", 0.18) then
 		local params = RaycastParams.new()
 		params.FilterType = Enum.RaycastFilterType.Exclude
 		params.FilterDescendantsInstances = { character }

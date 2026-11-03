@@ -72,3 +72,7 @@
 - `ServerScriptService.Server.Systems.WorldSystem`
 
 O espelho versionado inclui os 33 LuaSourceContainers do place, não apenas os 11 scripts acima; consulte `HKroblox/src/README.md` e os caminhos sob `HKroblox/src/`. NPCs são criados em execução pela função de inicialização de WorldSystem, portanto não representam modelos salvos no DataModel de edição.
+
+## 2026-11-02 — lock, diálogo, salto, banco e NPCs
+
+O registro completo, com causa, comportamento anterior/esperado/atual, arquivos, testes, limites e sequência para o próximo agente está em [historico/log_correcao_movimento_dialogo_npc_2026-11-02.md](historico/log_correcao_movimento_dialogo_npc_2026-11-02.md). Foram alterados Config, KnightSpec, Movement, Dialogue, Cutscene, Combat e WorldSystem. O lock API e a proteção de dano no assento j2 passaram; não se validou física real do salto nem UI final. ForgeGUI recusou geração 3D por exigir upgrade de plano. Salvamento do place não confirmado.

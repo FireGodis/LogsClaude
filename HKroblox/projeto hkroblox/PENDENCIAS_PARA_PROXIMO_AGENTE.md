@@ -26,3 +26,13 @@
 - As habilidades têm pré-requisitos de perfil e cooldown server-side; validar chegada do remote no mesmo frame de salto e comportamento com lag.
 - Som `flap` e `wall` reaproveitam os sons existentes. Assets únicos ainda não foram publicados.
 - WorldSystem gera NPCs em runtime; validar aparência no place publicado e persistência do modelo de progresso.
+
+## Continuidade acrescentada — 2026-11-02
+
+- **Salvar no Studio:** lugar está aberto como Rollow Knife (WIP), place 114682255992027. Alterações foram feitas em memória; Ctrl+S precisa ser confirmado manualmente. O executor não expõe SavePlaceAsync e a captura Windows expirou. Espelho das 33 fontes está em GitHub; esta sessão atualizou sete scripts desse espelho.
+- **Playtest do lock:** conversar com NPC e pressionar mover/pular/ataque/habilidade; repetir durante cutscene, skip, conclusão e destruição de personagem. Confirmar camera/pose e restauração sem erro.
+- **UI:** confirmar que “Label” sumiu, painel está no alto à direita e speaker de 34 px fica no canto inferior esquerdo; validar fade/tempo em desktop e telas pequenas.
+- **Movimento:** medir altura de flap, validar uma utilização até aterrissar e aparência/som; fazer pelo menos três wall hops recontatando a mesma parede, depois testar outra parede e cooldown.
+- **Bancos:** revisar todos os tags Bench, aplicar dano fora/dentro da área, testar ataques de chefe/hazards e tolerância vertical.
+- **NPC:** inspecionar composição procedural em viewport. O pedido ForgeGUI foi bloqueado pelo plano; geração/publicação de modelo 3D segue pendente.
+- **Dados:** em ambiente autorizado para DataStore, validar save, reload e respawn. Nenhuma fase deve ser marcada como concluída ainda.

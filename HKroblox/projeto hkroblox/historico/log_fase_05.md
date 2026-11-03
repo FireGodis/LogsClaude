@@ -9,3 +9,7 @@
 - **Aplicação no mapa:** habilidade de garra tem utilidade no Jardim/shafts, mas ainda não foi associada a uma porta física; nenhum portão foi alterado.
 - **Testes:** modules carregaram e wings foi concedida no Play. Impulso, wall jump, segurança de cooldown e save não foram validados em teste físico.
 - **Estado:** **Em andamento**, sem concluir a fase.
+
+## 2026-11-02 — iteração de movimento
+
+A habilidade `wings` recebeu impulso configurado de 68 e asas maiores em duas WedgeParts; o corte de pulo não interrompe a primeira janela de 0,14 s do flap. A habilidade regional `claw` agora rearma wall jump após cooldown de 0,22 s e recontato, permitindo repetir o salto na mesma face. O evento visual do servidor usa cooldown de 0,18 s. É lógica original do HKROBLOX inspirada no princípio público de wall hops sucessivos; movimento físico e visual ainda precisam de validação manual. Detalhes e causa em [registro detalhado](log_correcao_movimento_dialogo_npc_2026-11-02.md).

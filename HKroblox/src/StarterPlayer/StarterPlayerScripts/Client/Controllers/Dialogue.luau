@@ -25,9 +25,9 @@ local function buildGui(): (ScreenGui, TextLabel, TextLabel, TextLabel)
 
 	local panel = Instance.new("Frame")
 	panel.Name = "Panel"
-	panel.AnchorPoint = Vector2.new(0.5, 1)
-	panel.Position = UDim2.new(0.5, 0, 1, -36)
-	panel.Size = UDim2.new(0.78, 0, 0, 178)
+	panel.AnchorPoint = Vector2.new(1, 0)
+	panel.Position = UDim2.new(1, -34, 0, 34)
+	panel.Size = UDim2.new(0.56, 0, 0, 205)
 	panel.BackgroundColor3 = Color3.fromRGB(8, 11, 20)
 	panel.BackgroundTransparency = 0.12
 	panel.BorderSizePixel = 0
@@ -55,8 +55,8 @@ local function buildGui(): (ScreenGui, TextLabel, TextLabel, TextLabel)
 
 	local body = Instance.new("TextLabel")
 	body.Name = "Line"
-	body.Position = UDim2.new(0, 28, 0, 35)
-	body.Size = UDim2.new(1, -56, 0, 92)
+	body.Position = UDim2.new(0, 28, 0, 43)
+	body.Size = UDim2.new(1, -56, 0, 112)
 	body.BackgroundTransparency = 1
 	body.Font = Enum.Font.Garamond
 	body.TextColor3 = Color3.fromRGB(237, 235, 228)
@@ -64,20 +64,25 @@ local function buildGui(): (ScreenGui, TextLabel, TextLabel, TextLabel)
 	body.TextWrapped = true
 	body.TextXAlignment = Enum.TextXAlignment.Left
 	body.TextYAlignment = Enum.TextYAlignment.Center
+	body.Text = ""
 	body.TextTransparency = 1
 	body.Parent = panel
 
 	local name = Instance.new("TextLabel")
 	name.Name = "Speaker"
-	name.AnchorPoint = Vector2.new(0.5, 1)
-	name.Position = UDim2.new(0.5, 0, 1, -9)
-	name.Size = UDim2.new(0.5, 0, 0, 24)
+	name.AnchorPoint = Vector2.new(0, 1)
+	name.Position = UDim2.new(0, 44, 1, -38)
+	name.Size = UDim2.new(0.62, 0, 0, 54)
 	name.BackgroundTransparency = 1
 	name.Font = Enum.Font.Garamond
-	name.TextColor3 = Color3.fromRGB(173, 205, 223)
-	name.TextSize = 19
+	name.TextColor3 = Color3.fromRGB(190, 220, 235)
+	name.TextSize = 34
+	name.TextXAlignment = Enum.TextXAlignment.Left
+	name.TextStrokeColor3 = Color3.fromRGB(5, 8, 15)
+	name.TextStrokeTransparency = 0.35
 	name.TextTransparency = 1
-	name.Parent = panel
+	name.ZIndex = 3
+	name.Parent = gui
 
 	local hint = Instance.new("TextLabel")
 	hint.Name = "ContinueHint"
@@ -176,13 +181,13 @@ local function openDialogue(npcId: string, speaker: string, rawLines: any)
 	TweenService:Create(body, TweenInfo.new(0.35), { TextTransparency = 0 }):Play()
 	TweenService:Create(hint, TweenInfo.new(0.35), { TextTransparency = 0.12 }):Play()
 	name.Text = speaker
-	TweenService:Create(name, TweenInfo.new(0.35), { TextTransparency = 0 }):Play()
-	task.delay(1.15, function()
+	TweenService:Create(name, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { TextTransparency = 0 }):Play()
+	task.delay(2.8, function()
 		if finished or thisGeneration ~= generation then
 			return
 		end
-		TweenService:Create(name, TweenInfo.new(0.4), { TextTransparency = 1 }):Play()
-		task.delay(0.42, function()
+		TweenService:Create(name, TweenInfo.new(0.75, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { TextTransparency = 1 }):Play()
+		task.delay(0.78, function()
 			if not finished and thisGeneration == generation then
 				showLine(1)
 			end

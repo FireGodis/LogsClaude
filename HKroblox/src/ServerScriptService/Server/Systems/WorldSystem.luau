@@ -47,7 +47,7 @@ local STORY_NPCS: { StoryNPC } = {
 		id = "orvalho",
 		name = "Orvalho, Tecelão de Raízes",
 		region = "Alameda de Musgo",
-		x = 504,
+		x = 556,
 		ability = "claw",
 		lines = {
 			"As raízes aprendem a pedra pelo tato.",
@@ -65,42 +65,76 @@ local function createStoryNPCs()
 		folder.Name = "NPCs"
 		folder.Parent = mundo
 	end
+
+	local function makePart(model: Model, name: string, size: Vector3, position: Vector3, color: Color3, shape: Enum.PartType?, material: Enum.Material?, transparency: number?, rotation: number?): BasePart
+		local part: BasePart
+		if name == "Mantle" or string.find(name, "Leaf") or string.find(name, "Wing") then
+			part = Instance.new("WedgePart")
+		else
+			part = Instance.new("Part")
+			if shape then
+				(part :: Part).Shape = shape
+			end
+		end
+		part.Name = name
+		part.Anchored = true
+		part.CanCollide = false
+		part.CanTouch = false
+		part.CanQuery = false
+		part.Size = size
+		part.CFrame = CFrame.new(position) * CFrame.Angles(0, 0, rotation or 0)
+		part.Material = material or Enum.Material.SmoothPlastic
+		part.Color = color
+		part.Transparency = transparency or 0
+		part.Parent = model
+		return part
+	end
+
 	for _, record in STORY_NPCS do
 		local model = folder:FindFirstChild(record.id)
-		if not model or not model:IsA("Model") then
+		if model and (not model:IsA("Model") or model:GetAttribute("VisualRevision") ~= 2) then
+			model:Destroy()
+			model = nil
+		end
+		if not model then
 			model = Instance.new("Model")
 			model.Name = record.id
-			local body = Instance.new("Part")
-			body.Name = "Mantle"
-			body.Anchored = true
-			body.CanCollide = false
-			body.Size = Vector3.new(2.1, 2.8, 1.25)
-			body.Position = Vector3.new(record.x, 1.5, 0)
-			body.Material = Enum.Material.Slate
-			body.Color = if record.ability == "wings" then Color3.fromRGB(45, 56, 88) else Color3.fromRGB(42, 67, 52)
-			body.Parent = model
-			local head = Instance.new("Part")
-			head.Name = "Face"
-			head.Shape = Enum.PartType.Ball
-			head.Anchored = true
-			head.CanCollide = false
-			head.Size = Vector3.new(1.6, 1.5, 1.4)
-			head.Position = Vector3.new(record.x, 3.5, 0)
-			head.Material = Enum.Material.SmoothPlastic
-			head.Color = Color3.fromRGB(222, 226, 218)
-			head.Parent = model
-			local light = Instance.new("Part")
-			light.Name = "Keepsake"
-			light.Shape = Enum.PartType.Ball
-			light.Anchored = true
-			light.CanCollide = false
-			light.Size = Vector3.new(0.55, 0.55, 0.55)
-			light.Position = Vector3.new(record.x + 1.15, 2.25, 0.55)
-			light.Material = Enum.Material.Neon
-			light.Color = if record.ability == "wings" then Color3.fromRGB(177, 218, 255) else Color3.fromRGB(176, 233, 168)
-			light.Parent = model
+			local x = record.x
+			local isLumeira = record.ability == "wings"
+			local mantleColor = if isLumeira then Color3.fromRGB(34, 43, 74) else Color3.fromRGB(32, 61, 48)
+			local accentColor = if isLumeira then Color3.fromRGB(139, 178, 210) else Color3.fromRGB(120, 185, 129)
+			local ivory = Color3.fromRGB(230, 230, 214)
+			local ink = Color3.fromRGB(18, 23, 29)
+			local mantle = makePart(model, "Mantle", Vector3.new(2.35, 2.55, 1.3), Vector3.new(x, 1.35, 0), mantleColor, nil, Enum.Material.Slate)
+			makePart(model, "MantleHem", Vector3.new(2.55, 0.45, 1.38), Vector3.new(x, 0.25, 0.03), accentColor, Enum.PartType.Ball)
+			makePart(model, "Collar", Vector3.new(2.1, 0.55, 1.5), Vector3.new(x, 2.55, 0.05), accentColor, Enum.PartType.Ball)
+			makePart(model, "Face", Vector3.new(1.6, 1.7, 1.35), Vector3.new(x, 3.25, 0.03), ivory, Enum.PartType.Ball)
+			makePart(model, "EyeLeft", Vector3.new(0.16, 0.28, 0.11), Vector3.new(x - 0.34, 3.23, 0.69), ink, Enum.PartType.Ball)
+			makePart(model, "EyeRight", Vector3.new(0.16, 0.28, 0.11), Vector3.new(x + 0.34, 3.23, 0.69), ink, Enum.PartType.Ball)
+			makePart(model, "AntennaLeft", Vector3.new(0.3, 1.2, 0.4), Vector3.new(x - 0.47, 4.2, 0.02), ivory, nil, Enum.Material.SmoothPlastic, 0, -0.32)
+			makePart(model, "AntennaRight", Vector3.new(0.3, 1.2, 0.4), Vector3.new(x + 0.47, 4.2, 0.02), ivory, nil, Enum.Material.SmoothPlastic, 0, 0.32)
+			makePart(model, "Sash", Vector3.new(1.9, 0.22, 1.42), Vector3.new(x, 1.55, 0.66), accentColor, Enum.PartType.Ball)
+			makePart(model, "Pouch", Vector3.new(0.55, 0.62, 0.4), Vector3.new(x - 0.72, 1.05, 0.82), Color3.fromRGB(93, 76, 54), Enum.PartType.Ball, Enum.Material.Leather)
+			if isLumeira then
+				makePart(model, "WingLeft", Vector3.new(1.55, 2.25, 0.24), Vector3.new(x - 1.25, 2.15, -0.42), Color3.fromRGB(87, 108, 157), nil, Enum.Material.SmoothPlastic, 0.12, -0.2)
+				makePart(model, "WingRight", Vector3.new(1.55, 2.25, 0.24), Vector3.new(x + 1.25, 2.15, -0.42), Color3.fromRGB(87, 108, 157), nil, Enum.Material.SmoothPlastic, 0.12, 0.2)
+			else
+				makePart(model, "LeafLeft", Vector3.new(1.2, 0.9, 0.22), Vector3.new(x - 0.95, 2.7, 0.24), Color3.fromRGB(81, 145, 91), nil, Enum.Material.Grass, 0.02, -0.48)
+				makePart(model, "LeafRight", Vector3.new(1.2, 0.9, 0.22), Vector3.new(x + 0.95, 2.7, 0.24), Color3.fromRGB(108, 174, 106), nil, Enum.Material.Grass, 0.02, 0.48)
+			end
+			local seedColor = if isLumeira then Color3.fromRGB(177, 218, 255) else Color3.fromRGB(174, 255, 183)
+			local seed = makePart(model, "Keepsake", Vector3.new(0.48, 0.48, 0.48), Vector3.new(x + 1.18, 2.08, 0.95), seedColor, Enum.PartType.Ball, Enum.Material.Neon)
+			makePart(model, "KeepsakeHalo", Vector3.new(0.9, 0.9, 0.9), seed.Position, seedColor, Enum.PartType.Ball, Enum.Material.Neon, 0.8)
+			local light = Instance.new("PointLight")
+			light.Name = "KeepsakeGlow"
+			light.Color = seedColor
+			light.Brightness = 1.1
+			light.Range = 9
+			light.Parent = seed
+			model:SetAttribute("VisualRevision", 2)
 			model.Parent = folder
 		end
+
 		model:SetAttribute("NPCId", record.id)
 		model:SetAttribute("Region", record.region)
 		model:SetAttribute("GrantsAbility", record.ability)
@@ -114,8 +148,9 @@ local function createStoryNPCs()
 				prompt.KeyboardKeyCode = Enum.KeyCode.E
 				prompt.GamepadKeyCode = Enum.KeyCode.ButtonX
 				prompt.HoldDuration = 0.15
-				prompt.MaxActivationDistance = 10
+				prompt.MaxActivationDistance = 8
 				prompt.RequiresLineOfSight = false
+				prompt.UIOffset = Vector2.new(0, 44)
 				prompt.Parent = face
 			end
 			npcParts[record.id] = face

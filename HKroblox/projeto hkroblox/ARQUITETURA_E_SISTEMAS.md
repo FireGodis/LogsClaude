@@ -31,3 +31,11 @@
 - O modelo físico do mapa está em Workspace; a sessão não reposicionou plataformas porque não obteve reprodução de um trecho preso.
 - As asas e efeitos são peças/partículas originais geradas por código. Audio.play reaproveita os templates do jogo; não há efeito sonoro inédito para cada habilidade.
 - O arquivo do place não foi confirmado como salvo pela interface; o código-fonte versionado está em `src/`.
+
+## Atualização — 2026-11-02
+
+- `Movement.acquireControlLock()` continua sendo o contrato de exclusão mútua usado por diálogo e cutscene. Sob qualquer token ativo, WalkSpeed, JumpPower, JumpHeight e estado Jumping são suspensos e a velocidade física é anulada; um snapshot restaura as configurações quando o último token é liberado. A checagem ocorre antes de hit-stop.
+- `Config.Move` define o impulso de flap; `KnightSpec` descreve asas maiores em dois grupos, e `KnightAnim` anima e torna os membros visíveis por 0,42 s.
+- Wall Jump detecta parede via raycast e usa cooldown local curto para permitir saltos sucessivos no mesmo plano após recontato. O cooldown do evento visual é limitado no servidor.
+- `Combat.damagePlayer` consulta tags `Bench` e aplica o raio/tolerância de altura de `Config.World`; `WorldSystem` continua dono dos bancos, NPCs e progressão.
+- Os NPCs agora são modelos procedurais compostos de BaseParts para manter o runtime independente de asset externo. Não são rigs animados nem o modelo 3D do ForgeGUI; cada revisão visual substitui a instância antiga.

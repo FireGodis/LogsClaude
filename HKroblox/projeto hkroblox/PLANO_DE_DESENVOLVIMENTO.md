@@ -23,3 +23,13 @@
 9. Revisar as demais fases, monetização, performance e release.
 
 Não mover bancos ou plataformas sem conectar a mudança aos spawns, portas, habilidades e geometria física.
+
+## Correções em 2026-11-02
+
+1. Reforçar lock de controles e failsafe da cutscene — implementados; lock isolado passou, caminho completo ainda pendente.
+2. Corrigir hierarquia visual e posição do diálogo — implementado; verificar em tela em Play.
+3. Melhorar Double Jump e permitir repetição de Wall Jump na mesma parede — configurado/implementado; confirmar física manualmente.
+4. Tornar o banco j2 seguro contra dano central e afastar Orvalho — implementado; teste de dano no assento passou.
+5. Criar visuais originais procedurais; solicitar modelo 3D ForgeGUI quando recurso estiver liberado.
+
+Priorizar validação manual e persistência do place antes de avançar conteúdo adicional.

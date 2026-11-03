@@ -43,6 +43,7 @@ local enabled = false
 local requestedEnabled = false
 local controlLocks: { [number]: boolean } = {}
 local nextLockId = 0
+local controlSnapshot: { walkSpeed: number, jumpPower: number, jumpHeight: number, autoRotate: boolean, autoJumpEnabled: boolean, jumpingEnabled: boolean }? = nil
 local character: Model? = nil
 local humanoid: Humanoid? = nil
 local root: BasePart? = nil
@@ -56,8 +57,7 @@ local dashCd = 0.0
 local dashDir = 1
 local airDashUsed = false
 local doubleJumpUsed = false
-local wallJumpUsed = false
-local lastWallSide = 0
+local wallJumpCooldown = 0.0
 local wallJumpLock = 0.0
 local wallJumpDir = 0
 local flapT = -1.0
@@ -89,7 +89,7 @@ local function resetState()
 	pogoQueued, hurtQueued = false, false
 	airDashUsed = false
 	doubleJumpUsed = false
-	wallJumpUsed, lastWallSide = false, 0
+	wallJumpCooldown = 0
 	wallJumpLock, wallJumpDir, flapT = 0, 0, -1
 	info.wallSide, info.flapP = 0, -1
 	wasGrounded = true
@@ -131,7 +131,39 @@ function Movement.getInfo(): Types.AnimInfo
 end
 
 local function applyEnabledState()
-	enabled = requestedEnabled and next(controlLocks) == nil
+	local locked = next(controlLocks) ~= nil
+	local hum, rt = humanoid, root
+	if locked and hum then
+		if not controlSnapshot then
+			controlSnapshot = {
+				walkSpeed = hum.WalkSpeed,
+				jumpPower = hum.JumpPower,
+				jumpHeight = hum.JumpHeight,
+				autoRotate = hum.AutoRotate,
+				autoJumpEnabled = hum.AutoJumpEnabled,
+				jumpingEnabled = hum:GetStateEnabled(Enum.HumanoidStateType.Jumping),
+			}
+		end
+		hum.WalkSpeed = 0
+		hum.JumpPower = 0
+		hum.JumpHeight = 0
+		hum.AutoRotate = false
+		hum.AutoJumpEnabled = false
+		hum.Jump = false
+		hum:SetStateEnabled(Enum.HumanoidStateType.Jumping, false)
+		hum:Move(Vector3.zero, true)
+		if rt then rt.AssemblyLinearVelocity = Vector3.zero end
+	elseif not locked and hum and controlSnapshot then
+		local previous = controlSnapshot
+		controlSnapshot = nil
+		hum.WalkSpeed = previous.walkSpeed
+		hum.JumpPower = previous.jumpPower
+		hum.JumpHeight = previous.jumpHeight
+		hum.AutoRotate = previous.autoRotate
+		hum.AutoJumpEnabled = previous.autoJumpEnabled
+		hum:SetStateEnabled(Enum.HumanoidStateType.Jumping, previous.jumpingEnabled)
+	end
+	enabled = requestedEnabled and not locked
 	Input.setEnabled(enabled)
 	if not enabled then
 		jumpBuffer, attackBuffer, dashBuffer = 0, 0, 0
@@ -183,6 +215,19 @@ local function step(dt: number)
 	local pos = rt.Position
 	local vel = rt.AssemblyLinearVelocity
 
+	-- Travas de diálogo/cutscene são prioritárias sobre qualquer outro estado,
+	-- incluindo hit-stop, e anulam também o controle padrão do Humanoid.
+	if next(controlLocks) ~= nil then
+		hum.WalkSpeed, hum.JumpPower, hum.JumpHeight = 0, 0, 0
+		hum.AutoJumpEnabled = false
+		hum.Jump = false
+		hum:SetStateEnabled(Enum.HumanoidStateType.Jumping, false)
+		hum:Move(Vector3.zero, true)
+		rt.AssemblyLinearVelocity = Vector3.zero
+		info.vx, info.vy, info.grounded, info.state = 0, 0, hum.FloorMaterial ~= Enum.Material.Air, "Idle"
+		return
+	end
+
 	-- Hit-stop: congela um instante para o golpe ter peso.
 	if hitStopT > 0 then
 		hitStopT -= dt
@@ -216,8 +261,9 @@ local function step(dt: number)
 	if grounded then
 		airDashUsed = false
 		doubleJumpUsed = false
-		wallJumpUsed, lastWallSide = false, 0
+		wallJumpCooldown = 0
 	end
+	wallJumpCooldown = math.max(0, wallJumpCooldown - dt)
 	wallJumpLock = math.max(0, wallJumpLock - dt)
 	flapT = if flapT > 0 then math.max(-1, flapT - dt) else -1
 	info.flapP = if flapT > 0 then 1 - flapT / 0.42 else -1
@@ -233,9 +279,6 @@ local function step(dt: number)
 		elseif leftHit and math.abs(leftHit.Normal.Y) < 0.35 then
 			wallSide = -1
 		end
-	end
-	if wallSide ~= 0 and lastWallSide ~= 0 and wallSide ~= lastWallSide then
-		wallJumpUsed = false
 	end
 	info.wallSide = wallSide
 	if grounded and jumpLock <= 0 then
@@ -325,10 +368,9 @@ local function step(dt: number)
 			vy = M.JumpVelocity
 			hum:ChangeState(Enum.HumanoidStateType.Jumping)
 			Audio.play("jump")
-		elseif wallSide ~= 0 and not wallJumpUsed and player:GetAttribute("Ability_claw") == true then
+		elseif wallSide ~= 0 and wallJumpCooldown <= 0 and player:GetAttribute("Ability_claw") == true then
 			jumpBuffer = 0
-			wallJumpUsed = true
-			lastWallSide = wallSide
+			wallJumpCooldown = 0.22
 			wallJumpDir = -wallSide
 			wallJumpLock = M.WallJumpLock
 			info.facing = wallJumpDir
@@ -336,7 +378,6 @@ local function step(dt: number)
 			vy = M.WallJumpVelocityY
 			vx = wallJumpDir * M.WallJumpVelocityX
 			jumping = true
-			doubleJumpUsed = false
 			Net.send("Ability", "WallJump", wallJumpDir)
 			Audio.play("wall")
 			CombatFx.wallJump(pos, wallSide)
@@ -385,7 +426,7 @@ local function step(dt: number)
 	if jumping then
 		if vy <= 0 then
 			jumping = false
-		elseif not Input.isHeld("jump") and vy > 12 then
+		elseif not Input.isHeld("jump") and vy > 12 and flapT <= 0.28 then
 			vy *= M.JumpCut
 			jumping = false
 		end
@@ -431,6 +472,7 @@ function Movement.bind(newCharacter: Model)
 	hum.UseJumpPower = true
 	hum.JumpPower = M.JumpVelocity
 	hum.WalkSpeed = M.RunSpeed
+	applyEnabledState()
 	CameraRig.snap()
 end
 

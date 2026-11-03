@@ -10,3 +10,7 @@
 - **Teste observado:** conversa e recompensa wings funcionaram em Play de Studio. Orvalho/claw e save persistente ainda não testados.
 - **Pendências:** ampliar variações narrativas por chefe, região e eventos; extrair dados para módulo se a lista crescer; acrescentar outros NPCs e testar acessibilidade/touch.
 - **Estado:** **Em andamento**; há base funcional, não uma narrativa completa.
+
+## 2026-11-02 — legibilidade e elenco
+
+O diálogo agora esvazia a linha antes do typewriter, posiciona o painel no topo direito e exibe o nome em fonte 34 no canto inferior esquerdo (fade 0,7 s, hold 2,8 s, fade 0,75 s). Orvalho foi afastado do banco j2, e ambos os NPCs são montados em revisão visual procedural 2 com máscara, manto, antenas e brilho regional. O caminho visual após esta alteração não passou em teste Play final; geração de personagem 3D no ForgeGUI foi bloqueada pelo plano. Consulte o [registro detalhado](log_correcao_movimento_dialogo_npc_2026-11-02.md).

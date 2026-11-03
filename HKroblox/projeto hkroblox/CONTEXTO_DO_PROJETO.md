@@ -26,3 +26,9 @@ As alterações foram feitas no editor de scripts do Studio. A captura da janela
 ## Estilo e preservação
 
 Preservar o fluxo modular, nomes já usados, a validação do servidor e a animação interpolada. Não reconstruir os segmentos de plataforma por suposição: confirmar alcance, colisão e rota no jogo antes de mover partes.
+
+## Atualização de continuidade — 2026-11-02
+
+- Nesta sessão foram ajustados bloqueio rígido em diálogos/cutscene, layout de diálogo, Double Jump/Wall Jump, proteção de bancos e aparência procedural dos NPCs. Veja o novo registro em `historico/log_correcao_movimento_dialogo_npc_2026-11-02.md`.
+- O teste do lock e o dano no banco j2 passaram isoladamente. Wall/Double Jump e UI final precisam de validação manual em Play.
+- Geração 3D do ForgeGUI foi bloqueada pelo plano da conta. Place não pôde ser salvo nesta sessão; o espelho Luau e documentos foram atualizados no GitHub.

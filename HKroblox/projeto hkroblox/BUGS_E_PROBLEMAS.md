@@ -19,3 +19,12 @@
 ## Risco/limite
 
 O assistente só confirma salvamento em GitHub. A janela do Roblox Studio expirou durante captura, então o place pode manter alterações não salvas; abrir o place e salvar antes de publicar ou encerrar o trabalho de edição.
+
+## Atualização — 2026-11-02
+
+- **Movimento durante diálogos/cutscene:** implementação endurecida; lock põe propriedades do Humanoid em zero, cancela velocidade antes do hit-stop e restaura snapshot no último unlock. Lock API passou isoladamente; conversa/cutscene completas ainda sem validação final.
+- **Texto “Label” e layout:** texto inicia vazio; painel foi para o alto à direita; nome grande (34 px) fadeia no canto inferior esquerdo. A tela final ainda requer inspeção manual.
+- **Double Jump:** impulso configurado em 68 (era 44), janela inicial protegida contra jump-cut e asas mais largas. Físico e leitura visual ainda não foram medidos no jogo.
+- **Wall Jump:** antiga trava por lado removida; novo cooldown de 0,22 s permite nova ação depois de recontato. Sequência de escalada em parede física pendente.
+- **Banco j2 inseguro e Orvalho adjacente:** área segura no servidor (raio 15, tolerância vertical 8), teste de dano não reduziu máscaras; Orvalho deslocado 46 studs. Validar outras fontes de dano e os outros bancos.
+- **Visual ForgeGUI:** modelo 3D foi solicitado, mas o ForgeGUI respondeu que geração exige upgrade; modelos procedurais originais substituem provisoriamente os blocos simples.

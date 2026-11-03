@@ -23,3 +23,13 @@
 ### Conclusão
 
 Módulos carregam e o diálogo/recompensa do NPC inicial foi exercitado. O lock lógico foi isoladamente verificado. Habilidades no movimento, save persistente, Wall Jump e correções de layout permanecem **não validados**. Nenhuma fase foi declarada concluída.
+
+## Reteste de correções — 2026-11-02
+
+- Play iniciou após todas as alterações; não houve erro de sintaxe/carregamento dos módulos modificados no console. Os únicos erros observados foram recusas de DataStore do Studio (`StudioAccessToApisNotAllowed`).
+- Lock, com Humanoid explicitamente vinculado no contexto de teste: durante lock `WalkSpeed=0`, `JumpPower=0`, Jumping desativado, `AssemblyLinearVelocity=(0,0)`; após unlock, `WalkSpeed=21`, `JumpPower=60`, Jumping habilitado. **Passou para a API do lock, sem provar fluxo completo da cutscene/conversa.**
+- Dano de teste no banco j2: `Masks` permaneceu 5. **Passou para proteção central por tag Bench.**
+- NPCs em runtime foram recriados com `VisualRevision=2`, Orvalho X=556, Lumeira X=66; ambos reportaram 16 descendentes. **Passou para montagem das instâncias; inspeção estética requer viewport.**
+- Teste de evento de conversa não abriu `RK_Dialogue` enquanto o painel de Controles do menu permaneceu ativo; **inconclusivo**, não declarar UI ou lock conversacional como E2E validado.
+- Double Jump, asas animadas, Wall Jump repetido, camera cutscene sob input e save/reload do DataStore **não testados ponta a ponta**.
+- O salvamento do place não foi confirmado: chamadas de captura da janela nativa expiraram duas vezes e `SavePlaceAsync` não existe no DataModel fornecido ao executor. Código/documentação em GitHub é cópia de recuperação, não substitui salvar o place no Studio.

@@ -6,7 +6,7 @@ A especificação mestre enviada pelo usuário foi copiada para [MASTER_GAME_DES
 
 **Não há backup binário do place nem dos assets.** Os scripts Luau foram copiados de Studio para source_snapshot/2026-11-03; esse backup de fontes não substitui um arquivo .rbxlx e não inclui assets externos.
 
-## Registro de cópias futuras
+## Registro de cópias\n\n| Data | Origem / place ou commit | Conteúdo | Local e formato | Integridade / hash | Commit que adicionou | Limitações |\n|---|---|---|---|---|---|---|\n| 2026-11-03 | Anexo do usuário: GDD STEAL A GOD | Documento mestre de design | MASTER_GAME_DESIGN.md, Markdown | Conteúdo integral preservado | Commit inicial | Não inclui código, place ou assets |\n| 2026-11-03 | Place [☀️UPD] Steal An God, ID 129275930788382 | Oito scripts Luau do DataModel | source_snapshot/2026-11-03 | Copiado após playtest | Commits do snapshot | Não inclui .rbxlx, binários ou assets externos |\n\n## Registro de cópias futuras
 
 Antes de criar uma cópia, registrar:
 

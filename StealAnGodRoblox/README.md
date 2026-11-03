@@ -15,9 +15,9 @@ O place aberto no Studio foi inspecionado e recebeu uma primeira versão jogáve
 | [MASTER_GAME_DESIGN.md](MASTER_GAME_DESIGN.md) | Cópia integral do GDD e da especificação de desenvolvimento fornecidos pelo usuário |
 | [PROJECT_SPEC.md](PROJECT_SPEC.md) | Visão do produto, princípios, arquitetura sugerida, fases e critérios de aceite |
 | [DEVELOPMENT_LOG.md](DEVELOPMENT_LOG.md) | Estado documentado, alterações realizadas e próximos passos |
-| [ASSET_MANIFEST.md](ASSET_MANIFEST.md) | Convenções propostas e inventário inicial de assets, ainda não verificados |
+| [ASSET_MANIFEST.md](ASSET_MANIFEST.md) | Placeholders observados, inventário e validação de assets futuros |
 | [ECONOMY_DESIGN.md](ECONOMY_DESIGN.md) | Moedas, fontes e usos planejados, monetização e regras de odds |
-| [BOT_AI_DESIGN.md](BOT_AI_DESIGN.md) | Arquitetura e comportamento planejados dos rivais controlados por IA |
+| [BOT_AI_DESIGN.md](BOT_AI_DESIGN.md) | Arquitetura planejada e estado implementado do rival Ares |
 | [TEST_PLAN.md](TEST_PLAN.md) | Cenários, resultados do playtest em Studio e pendências de validação |
 | [SKILLS_AND_WORKFLOW.md](SKILLS_AND_WORKFLOW.md) | Skills de Roblox e Blender indicadas pelo usuário e quando consultá-las |
 | [AGENT_HANDOFF.md](AGENT_HANDOFF.md) | Protocolo para registrar progresso, evidências, pendências e passagem entre agentes |

@@ -50,3 +50,20 @@ ProcessReceipt deve ser seguro, idempotente e recuperável em repetição. Verif
 3. Fixar custo, renda, tempo de hatch e ritmo de upgrade com playtests.
 4. Formalizar o que ocorre com itens adquiridos ao desconectar ou sofrer roubo.
 5. Determinar produtos reais somente após aprovação e configuração no Roblox.
+
+## Slice inicial testado no Studio — valores provisórios
+
+A primeira versão executável centraliza estes valores em SAG_Config. São parâmetros do protótipo, testados no Studio, ainda sem aprovação de balanceamento de longo prazo:
+
+| Parâmetro | Valor atual | Efeito |
+|---|---:|---|
+| Coins iniciais | 150 | Perfil novo e Ares |
+| Greek Egg | 100 Coins | Compra no altar do hub |
+| Renda de Zeus | 4 Coins/s | Saldo pendente no nível de base 1 |
+| Upgrade de base | 100 Coins | Nível 1→2 |
+| Bônus do nível 2 | +25% | Produção arredondada para 5 Coins/s |
+| Nível máximo nesta fatia | 2 | Limite de escopo |
+
+O servidor decide transações e publica atributos para o HUD. O playtest confirmou compra, hatch, produção, coleta e upgrade. Ares usa estado simulado próprio com os mesmos custos e renda; não recebe moedas arbitrárias depois do valor inicial.
+
+Esses valores não definem a curva completa, custo de civilizações futuras, odds, Gems, Shards ou monetização. Nenhuma compra com Robux ou ovo de recompensa paga existe nesta fatia.

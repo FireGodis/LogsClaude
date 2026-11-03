@@ -77,9 +77,26 @@ A estrutura final deve ser adaptada ao formato encontrado na Fase 0. Não criar 
 
 A primeira versão jogável deve permitir entrar, receber base, ganhar moedas, comprar e chocar ovos, coletar e posicionar deuses, gerar renda, melhorar a base, fazer rebirth, roubar itens elegíveis e defender-se. IA, monetização, segurança e desempenho devem satisfazer os cenários listados em [TEST_PLAN.md](TEST_PLAN.md).
 
-## Estado inicial
+## Estado atual no Studio — 2026-11-03
 
-- Estado: documentação organizada; inspeção técnica do jogo pendente.
-- Escopo implementado nesta etapa: documentação baseada no GDD fornecido.
-- Testes de jogo: não executados.
-- Próximo passo: Fase 0 — inspeção do ambiente e do projeto real, antes de modificar scripts ou assets.
+Place: [☀️UPD] Steal An God, ID 129275930788382. O place inicial continha Baseplate e SpawnLocation; ambos foram preservados. O projeto é editado no Studio conectado, sem Rojo configurado neste slice.
+
+### Implementado e testado
+
+- Pastas compartilhadas, serviços de servidor e assets, configuração, bootstrap, HUD e PlayerDataService.
+- Mundo grego procedural com hub, sete bases, caminhos de mármore, altares e prompts de compra, hatch, coleta e upgrade.
+- Loop humano de compra do Greek Egg por 100 Coins, hatch de Zeus, renda, coleta e upgrade de base nível 1→2.
+- Rival Ares, base 7, com identidade IA, estado econômico próprio, compra, hatch, coleta e upgrade independente, usando Humanoid e PathfindingService.
+- Valores provisórios: 150 Coins iniciais, Zeus 4 Coins/s no nível 1, upgrade 100 Coins e multiplicador +25% no nível 2.
+
+### Limites atuais
+
+Esta é uma fatia funcional das fases 1–3, não a experiência completa nem um gate de lançamento. O DataStore usa modo memória no Studio e não foi validado online. Não há população dinâmica, roubo, defesa, rebirth, quests, monetização, arte final, testes móveis, multiplayer ou produção. Não foi exportado um arquivo .rbxlx. Os fontes estão em source_snapshot/2026-11-03.
+
+### Próximos passos
+
+1. Testar save/load e sessão em cópia/place de teste separado.
+2. Repetir com vários clientes, incluindo atribuição de bases e prompts de outro dono.
+3. Exercitar recálculo e falha de PathfindingService, depois avaliar desempenho.
+4. Implementar regras de fairness/ownership antes de qualquer sistema de roubo.
+5. Expandir arte após definir assets finais; publicar somente com autorização explícita.

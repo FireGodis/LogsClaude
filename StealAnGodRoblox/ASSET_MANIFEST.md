@@ -2,7 +2,7 @@
 
 ## Estado
 
-Inventário planejado derivado do GDD. Nenhum modelo, textura, rig ou animação do jogo foi inspecionado ou confirmado como existente nesta etapa. Registre apenas evidências observadas depois da Fase 0.
+Inventário baseado no GDD e na inspeção do place em Roblox Studio. O mapa grego e seus objetos são placeholders procedurais de Parts; o primeiro rival usa rig R15 criado pelo Roblox em runtime. Não há assets finais importados. Evidências e caminhos observados estão na seção de placeholders.
 
 ## Convenção de identificação proposta
 

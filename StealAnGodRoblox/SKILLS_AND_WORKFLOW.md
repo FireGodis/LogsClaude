@@ -24,3 +24,9 @@ Para STEAL A GOD, aplique o fluxo a ovos, deuses, cenários, bases, props, riggi
 - Não copie instruções ou scripts de terceiros para esta pasta sem necessidade. Os links acima são os pontos de entrada.
 - Não declare integração, exportação ou ferramenta disponível sem verificá-la no ambiente real.
 - Os requisitos específicos do GDD ficam em [MASTER_GAME_DESIGN.md](MASTER_GAME_DESIGN.md); registra-se qualquer alteração de escopo no log compartilhado.
+
+## Aplicação das skills — 2026-11-03
+
+- A Roblox Game Skill foi consultada para workflow de projeto, estrutura de tycoon/simulator, autoridade do servidor, persistência e segurança. A implementação usa pastas modulares, configuração central, lógica econômica server-side e HUD de leitura.
+- A Blender SuperSkill foi consultada como referência, mas modelagem Blender/ForgeGUI não foi necessária nesta fatia: o mapa e a estátua são Parts procedurais e o rig é criado pelo Roblox em runtime.
+- O próximo trabalho de arte que produza modelos finais deve aplicar o fluxo de referência, medidas e validação de export/import descrito pela Blender SuperSkill.

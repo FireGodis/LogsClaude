@@ -2,7 +2,7 @@
 
 ## Estado
 
-Estrutura inicial baseada no GDD. Preços, rendas, multiplicadores, probabilidades, limites e IDs de produtos não foram definidos ou testados. Não use valores inventados como balanceamento aprovado.
+A economia completa continua indefinida. O slice inicial possui preços, renda e upgrade provisórios, centralizados e testados no Roblox Studio; eles não são balanceamento final aprovado. Probabilidades, custos de progressão longa e IDs de produtos continuam sem definição.
 
 ## Moedas planejadas
 

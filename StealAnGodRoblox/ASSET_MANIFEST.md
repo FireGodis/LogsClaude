@@ -59,3 +59,18 @@ Cada deus, ovo ou asset final deve ter entrada própria quando sua produção co
 6. Atualizar este manifesto com caminhos, referências e resultado observado.
 
 Para modelagem, consulte [SKILLS_AND_WORKFLOW.md](SKILLS_AND_WORKFLOW.md) e a Blender SuperSkill. Não marque placeholder como asset final; substituições e exceções devem ficar registradas.
+
+## Placeholders observados no Studio — 2026-11-03
+
+O place tem uma cena grega procedural básica criada no Roblox Studio. Estes elementos existem como placeholders feitos de Parts e materiais Roblox; não são assets finais nem modelos importados:
+
+| Grupo | Caminho / evidência | Estado |
+|---|---|---|
+| Hub, altar grego e sete bases | Workspace.SAG_GameWorld; scripts WorldBuilder | Construído no Studio com Parts |
+| Caminhos de mármore e bordas douradas | Workspace.SAG_GameWorld.SAG_Pathways | Procedurais |
+| Estátua de Zeus | SAG_Base_XX após hatch | Placeholder de Parts |
+| Ovo grego, pedestais e altares | Hub e bases | Placeholders de Parts |
+| Ares | Rig R15 gerado em runtime por HumanoidDescription | Procedural; sem roupa/animação customizada |
+| HUD | StarterPlayerScripts.SAG_HUD | Interface Roblox; sem ícones finais |
+
+Não foi necessário usar Blender ou ForgeGUI neste slice. A Blender SuperSkill segue indicada para próxima etapa de assets de arte; nenhum .blend, FBX ou imagem externa foi produzido.

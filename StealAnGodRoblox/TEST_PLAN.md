@@ -2,7 +2,7 @@
 
 ## Estado
 
-Nenhum teste de gameplay, Studio, build, persistência ou desempenho foi executado para STEAL A GOD nesta organização documental. Todos os casos abaixo começam como **Pendente**. Registrar evidência observada e limitações; não declarar aprovado por análise do documento.
+O primeiro playtest do slice foi executado no Roblox Studio em 2026-11-03. O status de cada caso abaixo reflete apenas o alcance efetivamente observado; pendências de persistência, multiplayer, justiça, mobile, compras e desempenho continuam sem validação.
 
 ## Casos de teste
 

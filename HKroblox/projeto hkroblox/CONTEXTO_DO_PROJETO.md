@@ -36,3 +36,7 @@ Preservar o fluxo modular, nomes já usados, a validação do servidor e a anima
 ## Continuidade de movimento — 2026-11-02
 
 A referência visual recebida orienta asas luminosas em leque, feitas com geometria original do rig. Wall jump agora deve ser encadeável com dash e flap; a implementação renova ambos ao saltar da parede, aumenta o impulso vertical e solta o personagem sem habilidade `claw`. Alterações e testes detalhados: `historico/log_salto_alado_walljump_fluido_2026-11-02.md`.
+
+## Estado após a correção de recontato — 2026-11-02
+
+Wall jump não reutiliza mais o cooldown isolado: exige saída detectada da parede e novo contato. A saída força direção oposta durante 0,18 s. Sem claw, não há wall slide/pose e a queda foi observada no teste local. A cadeia com claw ainda exige validação manual. Registro: historico/log_walljump_contato_rearmavel_2026-11-02.md.

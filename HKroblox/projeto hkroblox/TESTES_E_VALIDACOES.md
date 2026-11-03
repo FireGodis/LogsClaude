@@ -42,3 +42,10 @@ Módulos carregam e o diálogo/recompensa do NPC inicial foi exercitado. O lock 
 - Console: avisos de acesso a DataStore desabilitado no Studio (`StudioAccessToApisNotAllowed`, stores `MareProgress_v1` e `RollowKnifeProfiles_v1`).
 - **Não executado:** teste físico reproduzível de wall hop repetido, dash e double jump em sequência; queda sem habilidade junto a parede; inspeção manual final da silhueta do flap.
 - Resultado: validação estrutural e de construção dos VFX aprovada; validação de gameplay parcial. Nenhuma fase marcada concluída.
+
+## Teste de wall jump — 2026-11-02 (ajuste de rearmamento)
+
+- Play iniciou com os módulos de movimento e animação carregados; sem erro Luau novo no Console.
+- Teste local com parede temporária e Ability_claw=false: personagem reposicionado no ar junto à parede, segurou D por ~500 ms; caiu até o piso (Y=3), sem permanecer suspenso. Instância de teste foi criada apenas no DataModel Client.
+- Console voltou a registrar somente StudioAccessToApisNotAllowed para DataStores existentes.
+- **Ainda pendente:** validar com claw=true o impulso para fora/cima, um único wall jump por contato, a reaproximação e o segundo wall jump; validar dash/flap na sequência e a pose idle wall slide.

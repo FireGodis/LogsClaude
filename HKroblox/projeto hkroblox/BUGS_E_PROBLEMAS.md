@@ -35,3 +35,10 @@ O assistente só confirma salvamento em GitHub. A janela do Roblox Studio expiro
 - **Wall jump rígido/baixo:** lock de direção reduzido para 0,08 s; força vertical 78 e horizontal 32; dash e flap voltam a ficar disponíveis no wall hop; cooldown de recontato 0,16 s. Sequência contínua ainda precisa de controle manual no jogo.
 - **Sem habilidade `claw`:** contato de parede não ativa estado de cling/slide; queda é limitada a velocidade de -18 para evitar aderência lenta. Cenário ainda requer playtest físico.
 - Place no Roblox Studio continua sem confirmação de salvamento.
+
+## Revisão adicional de parede — 2026-11-02
+
+- **Wall hop infinito parado na parede:** causa confirmada: o cooldown expirava mesmo com o raycast ainda detectando contato, então segurar pulo podia repetir o impulso para cima. Corrigido com estado armado/desarmado; rearmamento exige período real sem contato e novo contato.
+- **Sem impulso claro para longe:** além de elevar WallJumpVelocityX para 36 e WallJumpLock para 0,18 s, a janela também neutraliza o Humanoid:Move() que antes ainda recebia entrada contra a parede.
+- **Wall idle/slide:** com claw, queda na parede limitada a 9 studs/s e animação respirada de repouso. Sem claw, input contra a parede não prende e a queda fica rápida; observado caindo em teste local.
+- **Limite de validação:** não houve teste de wall hop repetido e retorno à parede após esta alteração; fazer antes de calibrar forças.

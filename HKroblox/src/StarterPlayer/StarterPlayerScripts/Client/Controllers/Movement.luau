@@ -57,7 +57,8 @@ local dashCd = 0.0
 local dashDir = 1
 local airDashUsed = false
 local doubleJumpUsed = false
-local wallJumpCooldown = 0.0
+local wallJumpArmed = true
+local wallSeparationT = 0.0
 local wallJumpLock = 0.0
 local wallJumpDir = 0
 local flapT = -1.0
@@ -89,7 +90,7 @@ local function resetState()
 	pogoQueued, hurtQueued = false, false
 	airDashUsed = false
 	doubleJumpUsed = false
-	wallJumpCooldown = 0
+	wallJumpArmed, wallSeparationT = true, 0
 	wallJumpLock, wallJumpDir, flapT = 0, 0, -1
 	info.wallSide, info.flapP = 0, -1
 	wasGrounded = true
@@ -261,14 +262,14 @@ local function step(dt: number)
 	if grounded then
 		airDashUsed = false
 		doubleJumpUsed = false
-		wallJumpCooldown = 0
+		wallJumpArmed = true
+		wallSeparationT = 0
 	end
-	wallJumpCooldown = math.max(0, wallJumpCooldown - dt)
 	wallJumpLock = math.max(0, wallJumpLock - dt)
 	flapT = if flapT > 0 then math.max(-1, flapT - dt) else -1
 	info.flapP = if flapT > 0 then 1 - flapT / M.FlapDuration else -1
 	local wallContactSide = 0
-	if not grounded and dashT <= 0 then
+	if not grounded then
 		local castParams = RaycastParams.new()
 		castParams.FilterType = Enum.RaycastFilterType.Exclude
 		castParams.FilterDescendantsInstances = { char }
@@ -282,6 +283,14 @@ local function step(dt: number)
 	end
 	local hasClaw = player:GetAttribute("Ability_claw") == true
 	local wallSide = if hasClaw then wallContactSide else 0
+	if wallContactSide == 0 then
+		wallSeparationT += dt
+		if wallSeparationT >= M.WallJumpRegrabCooldown then
+			wallJumpArmed = true
+		end
+	else
+		wallSeparationT = 0
+	end
 	info.wallSide = wallSide
 	if grounded and jumpLock <= 0 then
 		coyote = M.CoyoteTime
@@ -370,9 +379,10 @@ local function step(dt: number)
 			vy = M.JumpVelocity
 			hum:ChangeState(Enum.HumanoidStateType.Jumping)
 			Audio.play("jump")
-		elseif wallSide ~= 0 and wallJumpCooldown <= 0 and player:GetAttribute("Ability_claw") == true then
+		elseif wallSide ~= 0 and wallJumpArmed and player:GetAttribute("Ability_claw") == true then
 			jumpBuffer = 0
-			wallJumpCooldown = M.WallJumpRegrabCooldown
+			wallJumpArmed = false
+			wallSeparationT = 0
 			wallJumpDir = -wallSide
 			wallJumpLock = M.WallJumpLock
 			doubleJumpUsed = false
@@ -417,21 +427,28 @@ local function step(dt: number)
 		hum:Move(Vector3.zero, false)
 	elseif wallJumpLock > 0 then
 		if wallJumpDir ~= 0 then
-			-- Mantém o impulso de saída quando o jogador não direciona; entrada lateral
-			-- continua responsiva para poder voltar à parede ou iniciar um dash.
-			vx = if axis ~= 0 then axis * M.RunSpeed else wallJumpDir * M.WallJumpVelocityX
+			-- Impulso primeiro abre distância da parede. Bloqueia comando contra ela
+			-- só nesta janela curta; depois o jogador pode voltar e tocar de novo.
+			local lockAxis = axis
+			if axis == -wallJumpDir then lockAxis = 0 end
+			vx = if axis == wallJumpDir then axis * M.RunSpeed else wallJumpDir * M.WallJumpVelocityX
+			hum:Move(Vector3.new(lockAxis, 0, 0), false)
+			if lockAxis ~= 0 then info.facing = lockAxis end
 		else
 			vx = if axis ~= 0 then axis * M.RunSpeed else info.facing * M.DoubleJumpDrift
-		end
-		hum:Move(Vector3.new(axis, 0, 0), false)
-		if axis ~= 0 then
-			info.facing = axis
+			hum:Move(Vector3.new(axis, 0, 0), false)
+			if axis ~= 0 then info.facing = axis end
 		end
 	else
-		vx = axis * M.RunSpeed
-		hum:Move(Vector3.new(axis, 0, 0), false)
-		if axis ~= 0 then
-			info.facing = axis
+		local moveAxis = axis
+		if not hasClaw and wallContactSide ~= 0 and axis == wallContactSide then
+			-- Sem a habilidade, não pressione o corpo contra a parede: solte e caia.
+			moveAxis = 0
+		end
+		vx = moveAxis * M.RunSpeed
+		hum:Move(Vector3.new(moveAxis, 0, 0), false)
+		if moveAxis ~= 0 then
+			info.facing = moveAxis
 		end
 	end
 

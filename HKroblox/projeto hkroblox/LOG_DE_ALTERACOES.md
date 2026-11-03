@@ -80,3 +80,7 @@ O registro completo, com causa, comportamento anterior/esperado/atual, arquivos,
 ## 2026-11-02 — visual do flap e fluidez do Wall Jump
 
 Detalhes de causa, mudanças por arquivo, comportamento antes/depois, validação, limites e tarefas restantes em `historico/log_salto_alado_walljump_fluido_2026-11-02.md`. Foi validado carregamento em Play, rig com 18 peças e criação de halo/luz. A sequência física em parede real continua pendente; o place não foi salvo/confirmado.
+
+## 2026-11-02 — wall jump rearmado por novo contato
+
+Causa: cooldown sozinho permitia wall jump repetido sem separação; Humanoid:Move() também conservava o input para dentro durante a saída. Agora o wall jump desarma após cada uso, mede separação e só reabilita no próximo contato; saída bloqueia entrada para dentro por janela curta. Sem claw, input contra parede não prende e a queda fica rápida. Registro detalhado, alterações e limitações: historico/log_walljump_contato_rearmavel_2026-11-02.md.

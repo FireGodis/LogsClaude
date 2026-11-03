@@ -30,3 +30,7 @@ Foram corrigidos os estados de lock de controles, diálogo, flap, wall jump, pro
 ## Revisão de movimento — 2026-11-02
 
 A iteração mais recente amplia o flap do Double Jump com seis segmentos de asa e halo ciano, e torna o Wall Jump mais alto e encadeável com dash e flap. Consulte `historico/log_salto_alado_walljump_fluido_2026-11-02.md` para evidência e limitações. O código espelhado está em `../src/`; o place no Studio ainda não foi confirmado como salvo.
+
+## Correção de wall jump — 2026-11-02
+
+O wall jump não pode repetir enquanto o jogador continua encostado: após cada salto, a habilidade só reabilita depois de afastamento confirmado e novo contato. O impulso inicial bloqueia brevemente a direção contra a parede. Sem claw, a parede não oferece slide e a queda continua. Detalhes em historico/log_walljump_contato_rearmavel_2026-11-02.md.

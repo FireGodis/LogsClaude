@@ -46,3 +46,10 @@
 - `Movement` determina contato físico por raycast, mas só publica estado de escalada quando `Ability_claw` está ativa. Wall hop restaura dash e flap e usa direção controlável.
 - `KnightSpec` define duas asas principais e quatro penas WedgePart; `KnightAnim` articula as seis partes no flap.
 - `CombatFx.flap` cria partículas, halo de expansão e luz. Isso é VFX procedural; não depende de assets de terceiros.
+
+## Regras de contato do Wall Jump — 2026-11-02
+
+- Movement mantém um latch wallJumpArmed; disparar salto desarma até o raycast observar ausência de parede por WallJumpRegrabCooldown, seguido de novo contato. A contagem da separação também roda durante dash.
+- Durante WallJumpLock, a velocidade e Humanoid:Move() bloqueiam simultaneamente a entrada contra a parede; direção para longe continua disponível. Assim o personagem deve separar-se fisicamente antes de retornar.
+- Com Ability_claw, contato no ar aplica slide limitado a 9 studs/s e a pose wallSide usa uma animação de repouso sutil. Sem a habilidade, wallSide é zero, input contra a parede é neutralizado e a queda é acelerada.
+- A revisão consultou [uma recriação comunitária de movimento HK em Godot](https://github.com/tbh272/HollowKnightGodot), cuja descrição separa wall slide/jump e usa impulso direcional, e a página de código de um mod para Silksong; não foi localizada ali a implementação original do controlador do jogador. Nenhum código decompilado foi incorporado.

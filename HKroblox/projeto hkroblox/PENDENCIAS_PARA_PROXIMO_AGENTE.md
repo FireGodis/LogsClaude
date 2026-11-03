@@ -44,3 +44,7 @@
 3. Sem `Ability_claw`, encostar e pressionar A/D; personagem deve cair sem pose/slide de agarrar.
 4. Conferir visual em tela: leque largo branco/ciano, halo sem ofuscar gameplay, animação sincronizada e som.
 5. Se a escalada ficar excessiva, ajustar apenas `Config.Move` (`WallJumpVelocityY=78`, `WallJumpVelocityX=32`, `WallJumpRegrabCooldown=0.16`, `WallSlideSpeed=15`, `UnskilledWallFallSpeed=18`) após teste comparativo.
+
+## Parede: validação que falta após 2026-11-02
+
+Em Play com Ability_claw=true, use parede vertical e execute: encostar → saltar uma vez → segurar pulo enquanto ainda encosta (não deve subir de novo) → confirmar afastamento → retornar à parede → saltar novamente. Repetir com dash e flap no meio. Observar a pose wall idle e a descida lenta. Com claw=false, repetir D/A junto à parede e confirmar queda sem cling. A configuração atual é X=36, Y=78, lock=0,18 s, separação mínima=0,16 s, slide=9 e queda sem habilidade=26 studs/s.

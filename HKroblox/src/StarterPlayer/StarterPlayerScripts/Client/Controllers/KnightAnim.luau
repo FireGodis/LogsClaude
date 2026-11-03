@@ -143,11 +143,13 @@ local function computeTargets(info: Types.AnimInfo, t: number, out: { [string]: 
 
 	local wingA, wingB = out.wingA, out.wingB
 	if info.wallSide ~= 0 and not info.grounded then
-		-- agarrado à parede: encosta o corpo, braços para cima, pernas dobradas
+		-- Descanso atento na parede: corpo encostado e pequenos movimentos de respiração.
+		local wallBreath = math.sin(t * 3.2)
 		body.x, head.x = 0.35, 0.5
-		armF.r, armB.r = 2.6, 2.2
+		body.y += wallBreath * 0.035
+		armF.r, armB.r = 2.55 + wallBreath * 0.05, 2.2 - wallBreath * 0.04
 		legF.r, legB.r = 0.8, 0.3
-		cloak.r = -0.2
+		cloak.r = -0.2 + math.sin(t * 2.4) * 0.035
 	end
 	if info.flapP >= 0 and wingA and wingB then
 		-- bater de asas: duas batidas largas, corpo se encolhe e braços sobem

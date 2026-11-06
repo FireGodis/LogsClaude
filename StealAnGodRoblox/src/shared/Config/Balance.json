@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "speed": {
+    "stepsPerSecond": 5,
+    "baseWalkSpeed": 16,
+    "walkLogFactor": 5.5,
+    "maxWalkSpeed": 76,
+    "carryPenaltyBySize": { "Small": 0.10, "Normal": 0.18, "Large": 0.26, "Huge": 0.34, "Titan": 0.42 }
+  },
+  "biomes": [
+    { "id": 1,  "key": "Arcadia",    "name": "Bosque de Arcadia",   "mythology": "Greek",    "speedRequired": 0,           "baseIncome": 1,        "incubation": 15,  "guardianSpeed": 11, "guardianDetect": 26, "guardianLeash": 70, "nestRespawn": 18, "eggColor": [133, 196, 92] },
+    { "id": 2,  "key": "Aegean",     "name": "Costa do Mar Egeu",   "mythology": "Greek",    "speedRequired": 150,         "baseIncome": 5,        "incubation": 25,  "guardianSpeed": 17, "guardianDetect": 28, "guardianLeash": 72, "nestRespawn": 22, "eggColor": [64, 170, 230] },
+    { "id": 3,  "key": "Labyrinth",  "name": "Labirinto de Minos",  "mythology": "Greek",    "speedRequired": 1200,        "baseIncome": 25,       "incubation": 45,  "guardianSpeed": 20, "guardianDetect": 30, "guardianLeash": 74, "nestRespawn": 26, "eggColor": [168, 120, 80] },
+    { "id": 4,  "key": "Olympus",    "name": "Monte Olimpo",        "mythology": "Greek",    "speedRequired": 9000,        "baseIncome": 120,      "incubation": 75,  "guardianSpeed": 23, "guardianDetect": 32, "guardianLeash": 76, "nestRespawn": 30, "eggColor": [255, 214, 90] },
+    { "id": 5,  "key": "Midgard",    "name": "Campos de Midgard",   "mythology": "Norse",    "speedRequired": 65000,       "baseIncome": 600,      "incubation": 110, "guardianSpeed": 26, "guardianDetect": 33, "guardianLeash": 78, "nestRespawn": 32, "eggColor": [96, 150, 88] },
+    { "id": 6,  "key": "Jotunheim",  "name": "Jotunheim",           "mythology": "Norse",    "speedRequired": 450000,      "baseIncome": 3000,     "incubation": 160, "guardianSpeed": 29, "guardianDetect": 34, "guardianLeash": 80, "nestRespawn": 34, "eggColor": [170, 220, 255] },
+    { "id": 7,  "key": "Nidavellir", "name": "Forjas de Nidavellir","mythology": "Norse",    "speedRequired": 3000000,     "baseIncome": 15000,    "incubation": 220, "guardianSpeed": 32, "guardianDetect": 35, "guardianLeash": 82, "nestRespawn": 36, "eggColor": [255, 120, 50] },
+    { "id": 8,  "key": "Asgard",     "name": "Asgard",              "mythology": "Norse",    "speedRequired": 20000000,    "baseIncome": 75000,    "incubation": 300, "guardianSpeed": 35, "guardianDetect": 36, "guardianLeash": 84, "nestRespawn": 38, "eggColor": [120, 200, 255] },
+    { "id": 9,  "key": "Nile",       "name": "Oasis do Nilo",       "mythology": "Egyptian", "speedRequired": 140000000,   "baseIncome": 375000,   "incubation": 400, "guardianSpeed": 37, "guardianDetect": 37, "guardianLeash": 86, "nestRespawn": 40, "eggColor": [80, 200, 170] },
+    { "id": 10, "key": "Necropolis", "name": "Necropole",           "mythology": "Egyptian", "speedRequired": 1000000000,  "baseIncome": 1900000,  "incubation": 480, "guardianSpeed": 40, "guardianDetect": 38, "guardianLeash": 88, "nestRespawn": 42, "eggColor": [190, 160, 110] },
+    { "id": 11, "key": "Duat",       "name": "Reino de Duat",       "mythology": "Egyptian", "speedRequired": 7000000000,  "baseIncome": 9500000,  "incubation": 600, "guardianSpeed": 43, "guardianDetect": 39, "guardianLeash": 90, "nestRespawn": 44, "eggColor": [120, 70, 200] },
+    { "id": 12, "key": "SolarTemple","name": "Templo Solar",        "mythology": "Egyptian", "speedRequired": 50000000000, "baseIncome": 47500000, "incubation": 900, "guardianSpeed": 46, "guardianDetect": 40, "guardianLeash": 92, "nestRespawn": 46, "eggColor": [255, 190, 40] }
+  ],
+  "speciesIncomeMultiplier": [1, 1.8, 3.2, 6],
+  "speciesHatchWeights": { "normal": [60, 28, 10, 2], "rare": [35, 35, 22, 8], "special": [10, 25, 40, 25] },
+  "rareEggChance": 0.08,
+  "rarities": [
+    { "name": "Common",    "mult": 1.0,  "color": [200, 200, 200] },
+    { "name": "Uncommon",  "mult": 1.1,  "color": [90, 220, 110] },
+    { "name": "Rare",      "mult": 1.25, "color": [70, 150, 255] },
+    { "name": "Epic",      "mult": 1.4,  "color": [180, 90, 255] },
+    { "name": "Legendary", "mult": 1.6,  "color": [255, 180, 40] },
+    { "name": "Mythic",    "mult": 1.8,  "color": [255, 70, 90] },
+    { "name": "Secret",    "mult": 2.1,  "color": [40, 40, 40] },
+    { "name": "Eternal",   "mult": 2.4,  "color": [80, 255, 230] },
+    { "name": "Divine",    "mult": 2.8,  "color": [255, 245, 170] }
+  ],
+  "sizes": [
+    { "name": "Small",  "eggName": "Pequeno",  "mult": 0.75, "weight": 40, "scale": 0.8, "incubationMult": 0.9 },
+    { "name": "Normal", "eggName": "Normal",   "mult": 1.0,  "weight": 35, "scale": 1.0, "incubationMult": 1.0 },
+    { "name": "Large",  "eggName": "Grande",   "mult": 1.5,  "weight": 16, "scale": 1.25, "incubationMult": 1.15 },
+    { "name": "Huge",   "eggName": "Gigante",  "mult": 2.25, "weight": 7,  "scale": 1.55, "incubationMult": 1.3 },
+    { "name": "Titan",  "eggName": "Colossal", "mult": 4.0,  "weight": 2,  "scale": 2.0, "incubationMult": 1.5 }
+  ],
+  "mutations": [
+    { "name": "None",      "mult": 1,   "weight": 80,  "color": null },
+    { "name": "Silver",    "mult": 1.5, "weight": 8,   "color": [210, 220, 235] },
+    { "name": "Golden",    "mult": 2,   "weight": 5,   "color": [255, 200, 40] },
+    { "name": "Shadow",    "mult": 2.5, "weight": 3,   "color": [45, 30, 70] },
+    { "name": "Celestial", "mult": 3,   "weight": 1.6, "color": [140, 200, 255] },
+    { "name": "Radiant",   "mult": 4,   "weight": 1,   "color": [255, 250, 200] },
+    { "name": "Cosmic",    "mult": 6,   "weight": 0.7, "color": [90, 60, 220] },
+    { "name": "Void",      "mult": 8,   "weight": 0.4, "color": [15, 5, 25] },
+    { "name": "Rainbow",   "mult": 12,  "weight": 0.3, "color": [255, 100, 200] }
+  ],
+  "diminishingReturns": { "threshold": 10, "exponent": 0.8 },
+  "globalModifierCap": 6,
+  "treadmills": [
+    { "tier": 1,  "name": "Basic Treadmill",     "perStep": 2,     "price": 0 },
+    { "tier": 2,  "name": "Wooden Treadmill",    "perStep": 5,     "price": 300 },
+    { "tier": 3,  "name": "Iron Treadmill",      "perStep": 12,    "price": 4000 },
+    { "tier": 4,  "name": "Golden Treadmill",    "perStep": 30,    "price": 40000 },
+    { "tier": 5,  "name": "Thunder Treadmill",   "perStep": 80,    "price": 400000 },
+    { "tier": 6,  "name": "Divine Treadmill",    "perStep": 200,   "price": 4000000 },
+    { "tier": 7,  "name": "Celestial Treadmill", "perStep": 500,   "price": 40000000 },
+    { "tier": 8,  "name": "Ragnarok Treadmill",  "perStep": 2500,  "price": 400000000 },
+    { "tier": 9,  "name": "Solar Treadmill",     "perStep": 10000, "price": 4000000000 },
+    { "tier": 10, "name": "Godly Treadmill",     "perStep": 40000, "price": 40000000000 }
+  ],
+  "trails": [
+    { "id": "Basic",   "name": "Basic Trail",   "mult": 1.5, "price": 150,         "rarity": "Common",    "c1": [255, 255, 255], "c2": [180, 180, 180], "particles": false },
+    { "id": "Green",   "name": "Green Trail",   "mult": 2,   "price": 1500,        "rarity": "Uncommon",  "c1": [120, 255, 120], "c2": [20, 160, 60],   "particles": false },
+    { "id": "Blue",    "name": "Blue Trail",    "mult": 2.5, "price": 8000,        "rarity": "Rare",      "c1": [120, 200, 255], "c2": [20, 80, 220],   "particles": false },
+    { "id": "Purple",  "name": "Purple Trail",  "mult": 3,   "price": 40000,       "rarity": "Epic",      "c1": [220, 140, 255], "c2": [110, 30, 200],  "particles": true },
+    { "id": "Golden",  "name": "Golden Trail",  "mult": 3.5, "price": 200000,      "rarity": "Legendary", "c1": [255, 240, 150], "c2": [230, 160, 20],  "particles": true },
+    { "id": "Fire",    "name": "Fire Trail",    "mult": 4,   "price": 1000000,     "rarity": "Legendary", "c1": [255, 220, 80],  "c2": [255, 60, 20],   "particles": true },
+    { "id": "Galaxy",  "name": "Galaxy Trail",  "mult": 5,   "price": 6000000,     "rarity": "Mythic",    "c1": [120, 90, 255],  "c2": [255, 90, 220],  "particles": true },
+    { "id": "Shadow",  "name": "Shadow Trail",  "mult": 7,   "price": 40000000,    "rarity": "Secret",    "c1": [90, 60, 120],   "c2": [10, 0, 20],     "particles": true },
+    { "id": "Eternal", "name": "Eternal Trail", "mult": 10,  "price": 300000000,   "rarity": "Eternal",   "c1": [150, 255, 240], "c2": [40, 160, 255],  "particles": true },
+    { "id": "Divine",  "name": "Divine Trail",  "mult": 14,  "price": 2500000000,  "rarity": "Divine",    "c1": [255, 255, 220], "c2": [255, 200, 90],  "particles": true },
+    { "id": "Solar",   "name": "Solar Trail",   "mult": 20,  "price": 20000000000, "rarity": "Divine",    "c1": [255, 250, 120], "c2": [255, 120, 0],   "particles": true }
+  ],
+  "rewardTrails": [
+    { "id": "Collector", "name": "Collector Trail", "mult": 6, "price": -1, "rarity": "Mythic", "c1": [255, 200, 255], "c2": [120, 255, 200], "particles": true }
+  ],
+  "baseLevels": [
+    { "level": 1, "price": 0,           "incubators": 4,  "petSlots": 8 },
+    { "level": 2, "price": 1000,        "incubators": 6,  "petSlots": 12 },
+    { "level": 3, "price": 15000,       "incubators": 8,  "petSlots": 16 },
+    { "level": 4, "price": 200000,      "incubators": 10, "petSlots": 22 },
+    { "level": 5, "price": 3000000,     "incubators": 12, "petSlots": 28 },
+    { "level": 6, "price": 50000000,    "incubators": 15, "petSlots": 36 },
+    { "level": 7, "price": 800000000,   "incubators": 18, "petSlots": 44 },
+    { "level": 8, "price": 15000000000, "incubators": 22, "petSlots": 54 }
+  ],
+  "economy": {
+    "startingGold": 50,
+    "offlineRate": 0.5,
+    "offlineCapSeconds": 28800,
+    "sellSecondsOfIncome": 45,
+    "incomeTickSeconds": 1,
+    "vipMultiplier": 1.15,
+    "moneyPassMultiplier": 2,
+    "moneyBoostMultiplier": 2,
+    "trainingPassMultiplier": 2,
+    "trainingBoostMultiplier": 2,
+    "growthPassMultiplier": 0.5,
+    "extraBaseIncubators": 4,
+    "vipDailyGoldSecondsOfIncome": 600,
+    "vipDailyGoldMinimum": 500
+  },
+  "traps": { "maxActive": 3, "stunSeconds": 4, "immunitySeconds": 8, "lifetimeSeconds": 300, "minSpacing": 10, "triggerRadius": 3.5, "safeRadiusFromNest": 8 },
+  "protection": { "newPlayerSeconds": 600, "robbedWindowSeconds": 300, "robbedLimit": 2, "protectSeconds": 180, "catchRadius": 7, "droppedEggSeconds": 20 },
+  "specialEgg": { "intervalSeconds": 300, "warningSeconds": 15, "lifetimeSeconds": 120, "incubation": 300 },
+  "worldEvents": { "intervalSeconds": 1200, "durationSeconds": 240, "firstDelaySeconds": 420, "eventEggsPerWave": 3, "waveSeconds": 60, "eventIncomeBiomeBonus": 8 },
+  "abilities": { "globalImmunitySeconds": 6 },
+  "bots": { "targetPopulation": 6, "maxBots": 5, "spawnDelaySeconds": 8, "despawnGraceSeconds": 20 }
+}

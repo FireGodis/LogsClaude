@@ -97,6 +97,12 @@ GameConfig.Sounds = {
 	MusicHub = "",
 }
 
+-- ===================== IMAGES =====================
+-- Uploaded through ForgeGUI to the creator account (moderation: approved). Empty = text fallback.
+GameConfig.Images = {
+	Logo = "rbxassetid://108889404430687",
+}
+
 -- ===================== UI THEME =====================
 GameConfig.Theme = {
 	Panel = C3(24, 22, 48),

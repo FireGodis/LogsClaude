@@ -225,9 +225,36 @@ local function showOffline(data)
 	end)
 end
 
+-- Logo splash when joining (falls back to text if the image id is empty).
+local function splash()
+	local GameConfig = require(Shared.Config.GameConfig)
+	local holder = Kit.new("Frame", { BackgroundColor3 = Color3.fromRGB(14, 12, 30), Size = UDim2.fromScale(1, 1), ZIndex = 50, Parent = screen })
+	local logo
+	if GameConfig.Images.Logo ~= "" then
+		logo = Kit.new("ImageLabel", { BackgroundTransparency = 1, Image = GameConfig.Images.Logo, ScaleType = Enum.ScaleType.Fit, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.45), Size = UDim2.fromScale(0.6, 0.6), ZIndex = 51, Parent = holder })
+	else
+		logo = Kit.label({ Text = "STEAL AN GOD", Parent = holder, TextColor3 = T.Gold, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.fromScale(0.5, 0.45), Size = UDim2.fromScale(0.6, 0.2), ZIndex = 51 })
+	end
+	Kit.label({ Text = "Roube ovos • Choque deuses • Domine o panteão", Parent = holder, AnchorPoint = Vector2.new(0.5, 0), Position = UDim2.fromScale(0.5, 0.78), Size = UDim2.fromScale(0.6, 0.05), Font = T.FontBody, ZIndex = 51 })
+	local scale = Kit.new("UIScale", { Scale = 0.8, Parent = logo })
+	TweenService:Create(scale, TweenInfo.new(1.2, Enum.EasingStyle.Back), { Scale = 1 }):Play()
+	task.wait(2.8)
+	TweenService:Create(holder, TweenInfo.new(0.6), { BackgroundTransparency = 1 }):Play()
+	for _, d in holder:GetDescendants() do
+		if d:IsA("ImageLabel") then
+			TweenService:Create(d, TweenInfo.new(0.6), { ImageTransparency = 1 }):Play()
+		elseif d:IsA("TextLabel") then
+			TweenService:Create(d, TweenInfo.new(0.6), { TextTransparency = 1 }):Play()
+		end
+	end
+	task.wait(0.7)
+	holder:Destroy()
+end
+
 function Notifications.start()
 	screen = Kit.screen("SAG_Notifications", 20)
 	Kit.autoScale(screen)
+	task.spawn(splash)
 	toastHolder = Kit.new("Frame", { BackgroundTransparency = 1, AnchorPoint = Vector2.new(1, 0), Position = UDim2.new(1, -16, 0, 150), Size = UDim2.fromOffset(390, 260), Parent = screen })
 	Kit.list(toastHolder, 8)
 

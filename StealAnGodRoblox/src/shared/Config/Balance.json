@@ -53,7 +53,7 @@
     { "name": "Void",      "mult": 8,   "weight": 0.4, "color": [15, 5, 25] },
     { "name": "Rainbow",   "mult": 12,  "weight": 0.3, "color": [255, 100, 200] }
   ],
-  "diminishingReturns": { "threshold": 10, "exponent": 0.8 },
+  "diminishingReturns": { "threshold": 10, "exponent": 0.65 },
   "globalModifierCap": 6,
   "treadmills": [
     { "tier": 1,  "name": "Basic Treadmill",     "perStep": 2,     "price": 0 },
